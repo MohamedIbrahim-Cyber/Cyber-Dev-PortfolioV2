@@ -1,0 +1,6 @@
+{
+  "name": "CyberDev Portfolio",
+  "description": "Developer portfolio and engineering showcase with responsive bento grids, interactive terminal, and accessible design system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

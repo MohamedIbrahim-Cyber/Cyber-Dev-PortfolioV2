@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+:root {
+  /* Original Light Theme */
+  --bg: #f7f5f2;
+  --surface: #ffffff;
+  --border: #e6dfd5;
+  --text-primary: #161616;
+  --text-secondary: #6e6258;
+  --accent: #b81d34;
+  --accent-hover: #9c152a;
+  --accent-subtle: rgba(184, 29, 52, 0.1);
+  --accent-text: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.75);
+  --nav-border: #e6dfd5;
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  --card-shadow-hover: 0 15px 30px -8px rgba(0, 0, 0, 0.1);
+  --font-header: 'Space Grotesk', 'Syne', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-arabic: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[lang="ar"], [dir="rtl"] {
+  --font-header: 'Cairo', 'Space Grotesk', sans-serif;
+  --font-body: 'Cairo', 'Inter', sans-serif;
+}
+
+[data-theme="dark"], .dark {
+  /* Original Dark Theme */
+  --bg: #161616;
+  --surface: #282828;
+  --border: #710014;
+  --text-primary: #f2f1ed;
+  --text-secondary: #b38f6f;
+  --accent: #b81d34;
+  --accent-hover: #d1243e;
+  --accent-subtle: rgba(184, 29, 52, 0.2);
+  --accent-text: #ffffff;
+  --nav-bg: rgba(40, 40, 40, 0.75);
+  --nav-border: #710014;
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 15px 30px -8px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header);
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-header {
+  font-family: var(--font-header);
+}
+
+/* Glassmorphism Navigation */
+.glass-nav {
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--nav-border);
+}
+
+/* Standard Card (no jump on hover) */
+.surface-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+/* Interactive Project Card (selective smooth hover) */
+.interactive-project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.interactive-project-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-4px);
+}
+
+/* Terminal Floating Animation */
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-8px); }
+}
+
+.animate-floating {
+  animation: floating 4s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Terminal Cursor animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.95rem;
+  background-color: var(--accent);
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-floating {
+    animation: none !important;
+    transform: none !important;
+  }
+  .cursor-blink {
+    animation: none !important;
+  }
+}
+
+/* Focus Ring */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
