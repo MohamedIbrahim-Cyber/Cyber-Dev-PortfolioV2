@@ -46,36 +46,138 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const whatsapp = formData.whatsapp.trim();
+    const message = formData.message.trim();
+
+    if (!name || !email || !message) {
+      setStatus('error');
+      setErrorMessage(isRtl ? 'يرجى ملء جميع الحقول المطلوبة (الاسم، البريد، والرسالة).' : 'Please fill in all required fields (Name, Email, and Message).');
+      return;
+    }
 
     setStatus('sending');
     setErrorMessage(null);
 
+    const payload = { name, email, whatsapp, message };
+
     try {
-      // API proxy submission
+      // 1. Primary: Try server backend endpoint (/api/contact)
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          whatsapp: formData.whatsapp.trim(),
-          message: formData.message.trim(),
-        }),
+        body: JSON.stringify(payload),
       });
 
-      const result = await response.json().catch(() => null);
-
-      if (response.ok && result?.success !== false) {
-        setStatus('success');
-        setFormData({ name: '', email: '', whatsapp: '', message: '' });
+      let serverError = '';
+      if (response.ok) {
+        const result = await response.json().catch(() => null);
+        if (result?.success !== false) {
+          setStatus('success');
+          setFormData({ name: '', email: '', whatsapp: '', message: '' });
+          return;
+        } else if (result?.error) {
+          serverError = result.error;
+        }
       } else {
-        setStatus('error');
-        setErrorMessage(result?.error || (isRtl ? 'تعذر إرسال الرسالة عبر الخادم. يمكنك الإرسال مباشرة عبر البريد أو واتساب:' : 'Unable to send message via server. You can send directly via email or WhatsApp below:'));
+        try {
+          const errJson = await response.json();
+          if (errJson?.error) serverError = errJson.error;
+        } catch {
+          // Ignore JSON parse error
+        }
       }
-    } catch {
+
+      // 2. Secondary Fallback: Direct Discord Webhook call if VITE_DISCORD_WEBHOOK_URL is set
+      const clientWebhookUrl = (import.meta as any).env?.VITE_DISCORD_WEBHOOK_URL;
+      if (clientWebhookUrl && typeof clientWebhookUrl === 'string' && clientWebhookUrl.startsWith('http')) {
+        const discordPayload = {
+          username: 'CyberDev Portfolio Bot',
+          avatar_url: 'https://raw.githubusercontent.com/MohamedIbrahim-Cyber/MohamedIbrahim-Cyber/main/avatar.png',
+          embeds: [
+            {
+              title: '📬 New Portfolio Contact Submission (Direct Webhook)',
+              color: 0xb81d34,
+              fields: [
+                { name: '👤 Sender Name', value: name, inline: true },
+                { name: '📧 Sender Email', value: email, inline: true },
+                { name: '📱 WhatsApp', value: whatsapp || 'Not provided', inline: true },
+                { name: '💬 Message', value: message, inline: false },
+              ],
+              timestamp: new Date().toISOString(),
+              footer: { text: 'CyberDev Portfolio • Direct Webhook' },
+            },
+          ],
+        };
+
+        const directRes = await fetch(clientWebhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(discordPayload),
+        });
+
+        if (directRes.ok || directRes.status === 204) {
+          setStatus('success');
+          setFormData({ name: '', email: '', whatsapp: '', message: '' });
+          return;
+        }
+      }
+
+      // If both failed, display clear error message with instant email & WhatsApp actions
       setStatus('error');
-      setErrorMessage(isRtl ? 'تعذر الاتصال بالخادم. يمكنك إرسال رسالتك مباشرة عبر البريد أو واتساب:' : 'Could not reach server endpoint. You can send your message directly via email or WhatsApp:');
+      setErrorMessage(
+        serverError ||
+          (isRtl
+            ? 'تعذر إرسال الرسالة تلقائياً. يمكنك الإرسال مباشرة عبر البريد أو واتساب:'
+            : 'Unable to deliver message automatically. You can send directly via Email or WhatsApp below:')
+      );
+    } catch {
+      // Network Exception Fallback: Try direct client webhook
+      const clientWebhookUrl = (import.meta as any).env?.VITE_DISCORD_WEBHOOK_URL;
+      if (clientWebhookUrl && typeof clientWebhookUrl === 'string' && clientWebhookUrl.startsWith('http')) {
+        try {
+          const discordPayload = {
+            username: 'CyberDev Portfolio Bot',
+            avatar_url: 'https://raw.githubusercontent.com/MohamedIbrahim-Cyber/MohamedIbrahim-Cyber/main/avatar.png',
+            embeds: [
+              {
+                title: '📬 New Portfolio Contact Submission (Fallback Webhook)',
+                color: 0xb81d34,
+                fields: [
+                  { name: '👤 Sender Name', value: name, inline: true },
+                  { name: '📧 Sender Email', value: email, inline: true },
+                  { name: '📱 WhatsApp', value: whatsapp || 'Not provided', inline: true },
+                  { name: '💬 Message', value: message, inline: false },
+                ],
+                timestamp: new Date().toISOString(),
+                footer: { text: 'CyberDev Portfolio • Fallback Webhook' },
+              },
+            ],
+          };
+
+          const directRes = await fetch(clientWebhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(discordPayload),
+          });
+
+          if (directRes.ok || directRes.status === 204) {
+            setStatus('success');
+            setFormData({ name: '', email: '', whatsapp: '', message: '' });
+            return;
+          }
+        } catch {
+          // ignore fallback error
+        }
+      }
+
+      setStatus('error');
+      setErrorMessage(
+        isRtl
+          ? 'تعذر الاتصال بالخادم. يمكنك إرسال رسالتك مباشرة عبر البريد أو واتساب:'
+          : 'Could not reach server endpoint. You can send your message directly via Email or WhatsApp:'
+      );
     }
   };
 
