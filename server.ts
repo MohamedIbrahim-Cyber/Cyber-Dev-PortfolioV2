@@ -89,7 +89,8 @@ app.post('/api/contact', async (req, res) => {
     const sanitizedMessage = message.trim().slice(0, 4000);
 
     // Webhook configuration & resilient delivery
-    const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+    const defaultWebhookUrl = 'https://discord.com/api/webhooks/1543829053692444743/oivSH9dpk89IAl8cp-zIpfEUruXR1oJBMfS8roO2xUI1kgaHwFnIVIb1tDrlE0KLXvZi';
+    const webhookUrl = process.env.DISCORD_WEBHOOK_URL || defaultWebhookUrl;
     let deliveredToWebhook = false;
 
     if (webhookUrl && webhookUrl.startsWith('http')) {
@@ -129,21 +130,34 @@ app.post('/api/contact', async (req, res) => {
           deliveredToWebhook = true;
           console.log(`[Contact Form] Dispatched message from "${sanitizedName}" (${sanitizedEmail}) to Discord webhook successfully.`);
         } else {
-          console.warn(`[Contact Form] Discord webhook responded with status ${discordResponse.status}. Message logged locally.`);
+          const errBody = await discordResponse.text().catch(() => '');
+          console.warn(`[Contact Form] Discord webhook responded with status ${discordResponse.status}: ${errBody}`);
         }
       } catch (webhookErr: any) {
-        console.warn(`[Contact Form] Webhook delivery failed: ${webhookErr?.message || webhookErr}. Message logged locally.`);
+        console.warn(`[Contact Form] Webhook delivery failed: ${webhookErr?.message || webhookErr}.`);
+      }
+
+      if (deliveredToWebhook) {
+        return res.status(200).json({
+          success: true,
+          deliveredToWebhook: true,
+          message: 'Your message has been received successfully! I will get back to you shortly.',
+        });
+      } else {
+        return res.status(502).json({
+          success: false,
+          deliveredToWebhook: false,
+          error: 'Webhook delivery failed. Please try again or contact via Email/WhatsApp.',
+        });
       }
     } else {
       console.log(`[Contact Form] Received message from "${sanitizedName}" (${sanitizedEmail}) [WhatsApp: ${sanitizedWhatsapp || 'N/A'}]:\n"${sanitizedMessage}"`);
+      return res.status(200).json({
+        success: true,
+        deliveredToWebhook: false,
+        message: 'Your message has been received successfully!',
+      });
     }
-
-    // Always succeed and confirm receipt so the user never gets an unhelpful error
-    return res.status(200).json({
-      success: true,
-      deliveredToWebhook,
-      message: 'Your message has been received successfully! I will get back to you shortly.',
-    });
   } catch (error: any) {
     if (error?.name === 'TimeoutError') {
       console.error('[API Error] Discord webhook request timed out.');

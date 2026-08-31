@@ -89,8 +89,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
         }
       }
 
-      // 2. Secondary Fallback: Direct Discord Webhook call if VITE_DISCORD_WEBHOOK_URL is set
-      const clientWebhookUrl = (import.meta as any).env?.VITE_DISCORD_WEBHOOK_URL;
+      // 2. Secondary Fallback: Direct Discord Webhook call
+      const clientWebhookUrl =
+        (import.meta as any).env?.VITE_DISCORD_WEBHOOK_URL ||
+        'https://discord.com/api/webhooks/1543829053692444743/oivSH9dpk89IAl8cp-zIpfEUruXR1oJBMfS8roO2xUI1kgaHwFnIVIb1tDrlE0KLXvZi';
       if (clientWebhookUrl && typeof clientWebhookUrl === 'string' && clientWebhookUrl.startsWith('http')) {
         const discordPayload = {
           username: 'CyberDev Portfolio Bot',
@@ -134,7 +136,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
       );
     } catch {
       // Network Exception Fallback: Try direct client webhook
-      const clientWebhookUrl = (import.meta as any).env?.VITE_DISCORD_WEBHOOK_URL;
+      const clientWebhookUrl =
+        (import.meta as any).env?.VITE_DISCORD_WEBHOOK_URL ||
+        'https://discord.com/api/webhooks/1543829053692444743/oivSH9dpk89IAl8cp-zIpfEUruXR1oJBMfS8roO2xUI1kgaHwFnIVIb1tDrlE0KLXvZi';
       if (clientWebhookUrl && typeof clientWebhookUrl === 'string' && clientWebhookUrl.startsWith('http')) {
         try {
           const discordPayload = {
