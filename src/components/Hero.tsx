@@ -19,18 +19,20 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
       className="w-full pt-28 pb-12 sm:pt-36 sm:pb-16 flex flex-col items-center overflow-hidden"
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        {/* Left Column: Heading & CTAs (Sliding in from Left side, text fading in) */}
+        {/* Left Column: Heading & CTAs (Slides in from Left side) */}
         <motion.div 
           initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          whileInView={{ opacity: 1, x: 0, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7 flex flex-col gap-6 text-start"
         >
           {/* Main Title - Text Fading In */}
           <motion.h1 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="font-header font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--text-primary)] tracking-tight leading-[1.15]"
           >
             {t.hero.titlePrefix}
@@ -40,9 +42,10 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
 
           {/* Subtitle - Text Fading In */}
           <motion.p 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-2xl"
           >
             {t.hero.subtitleP1}
@@ -52,9 +55,10 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
 
           {/* Action Buttons & Socials - Text Fading In */}
           <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-wrap items-center gap-3 pt-2"
           >
             <a
@@ -72,7 +76,7 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Mohamed Ibrahim on GitHub"
-                className="w-11 h-11 rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-primary)] flex items-center justify-center hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5 transition-all shadow-sm"
+                className="w-11 h-11 rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-primary)] flex items-center justify-center hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all shadow-sm"
               >
                 <Github className="w-5 h-5" />
               </a>
@@ -82,15 +86,15 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Mohamed Ibrahim on LinkedIn"
-                className="w-11 h-11 rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-primary)] flex items-center justify-center hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5 transition-all shadow-sm"
+                className="w-11 h-11 rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-primary)] flex items-center justify-center hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all shadow-sm"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
 
               <a
-                href="mailto:mohamedar100x@gmail.com"
+                href="mailto:cyberdevbusines@gmail.com"
                 aria-label="Send email to Mohamed Ibrahim"
-                className="w-11 h-11 rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-primary)] flex items-center justify-center hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5 transition-all shadow-sm"
+                className="w-11 h-11 rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-primary)] flex items-center justify-center hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all shadow-sm"
               >
                 <Mail className="w-5 h-5" />
               </a>
@@ -98,11 +102,12 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
           </motion.div>
         </motion.div>
 
-        {/* Right Column: Terminal Component (Sliding in from Right side) */}
+        {/* Right Column: Terminal Component (Slides in from Right side) */}
         <motion.div 
           initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          whileInView={{ opacity: 1, x: 0, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5 w-full flex justify-center"
         >
           <TerminalCard currentLang={currentLang} />

@@ -51,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
             <Linkedin className="w-4 h-4" />
           </a>
           <a
-            href="mailto:mohamedar100x@gmail.com"
+            href="mailto:cyberdevbusines@gmail.com"
             aria-label="Email"
             className="hover:text-[var(--accent)] transition-colors"
           >

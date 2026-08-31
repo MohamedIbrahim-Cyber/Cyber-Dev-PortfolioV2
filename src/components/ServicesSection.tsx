@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Layout, Cpu, Terminal, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Layout, Cpu, Terminal, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { translations, Language } from '../data/translations';
 
 interface ServicesSectionProps {
@@ -9,14 +9,15 @@ interface ServicesSectionProps {
 
 export const ServicesSection: React.FC<ServicesSectionProps> = ({ currentLang }) => {
   const t = translations[currentLang];
+  const s = t.services;
   const isRtl = currentLang === 'ar';
 
   const renderIcon = (name: string) => {
     switch (name) {
-      case 'Layout': return <Layout className="w-5 h-5 text-[var(--accent)]" />;
-      case 'Cpu': return <Cpu className="w-5 h-5 text-[var(--accent)]" />;
-      case 'Terminal': return <Terminal className="w-5 h-5 text-[var(--accent)]" />;
-      default: return <Layout className="w-5 h-5 text-[var(--accent)]" />;
+      case 'Layout': return <Layout className="w-5 h-5" />;
+      case 'Cpu': return <Cpu className="w-5 h-5" />;
+      case 'Terminal': return <Terminal className="w-5 h-5" />;
+      default: return <Layout className="w-5 h-5" />;
     }
   };
 
@@ -26,89 +27,94 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ currentLang })
       aria-labelledby="services-heading"
       className="w-full py-12 sm:py-16 scroll-mt-24 flex flex-col gap-8 overflow-hidden"
     >
-      <div className="flex flex-col gap-2 pb-4 border-b border-[var(--border)]">
+      {/* Section Header */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-4 border-b border-[var(--border)]">
         <motion.h2 
           id="services-heading" 
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="font-header font-extrabold text-2xl sm:text-4xl text-[var(--text-primary)] tracking-tight"
         >
-          {t.services.title}
+          {s.title}
         </motion.h2>
+
+        <a
+          href="#Contact"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors group"
+        >
+          <span>{s.discussProject}</span>
+          <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isRtl ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
+        </a>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {t.services.items.map((service, idx) => {
+      {/* 3-Column Services: Left card from left, center from bottom, right from right */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        {s.items.map((item, idx) => {
           const xOffset = idx === 0 ? (isRtl ? 50 : -50) : idx === 2 ? (isRtl ? -50 : 50) : 0;
           const yOffset = idx === 1 ? 30 : 0;
 
           return (
             <motion.div
-              key={service.id}
+              key={item.id}
               initial={{ opacity: 0, x: xOffset, y: yOffset }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="surface-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between gap-6"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.65, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="service-glow-card spotlight-card group rounded-3xl p-6 sm:p-8 flex flex-col justify-between gap-6 cursor-default"
             >
               <div className="flex flex-col gap-4">
-                <div className="w-11 h-11 rounded-2xl bg-[var(--accent-subtle)] border border-[var(--border)] flex items-center justify-center">
-                  {renderIcon(service.iconName)}
+                <div className="w-12 h-12 rounded-2xl bg-[var(--accent-subtle)] text-[var(--accent)] flex items-center justify-center group-hover:scale-110 group-hover:bg-[var(--accent)] group-hover:text-white group-hover:shadow-[0_0_18px_rgba(184,29,52,0.45)] transition-all duration-300">
+                  {renderIcon(item.iconName)}
                 </div>
 
-                <div>
-                  <motion.h3 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="font-header font-bold text-lg text-[var(--text-primary)] leading-snug"
-                  >
-                    {service.title}
-                  </motion.h3>
-                  <motion.p 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-xs sm:text-sm text-[var(--text-secondary)] mt-2 leading-relaxed"
-                  >
-                    {service.description}
-                  </motion.p>
-                </div>
+                <motion.h3 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="font-header font-bold text-lg sm:text-xl text-[var(--text-primary)] leading-snug group-hover:text-[var(--accent)] transition-colors"
+                >
+                  {item.title}
+                </motion.h3>
 
-                <div className="flex flex-col gap-2 pt-2">
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--text-secondary)]">
-                    {t.services.deliverablesLabel}
-                  </span>
-                  <ul className="flex flex-col gap-1.5">
-                    {service.deliverables.map((item, dIdx) => (
-                      <motion.li 
-                        key={item} 
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: 0.05 * dIdx }}
-                        className="flex items-center gap-2 text-xs text-[var(--text-secondary)]"
-                      >
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent)] shrink-0" />
-                        <span>{item}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed"
+                >
+                  {item.description}
+                </motion.p>
               </div>
 
-              <div className="pt-4 border-t border-[var(--border)]">
-                <a
-                  href="#Contact"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--accent)] hover:underline"
+              {/* Deliverables Checklist */}
+              <div className="pt-4 border-t border-[var(--border)] flex flex-col gap-2.5">
+                <motion.span 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="font-mono text-[11px] uppercase tracking-wider text-[var(--accent)] font-semibold"
                 >
-                  <span>{t.services.discussProject}</span>
-                  <ArrowRight className={`w-3.5 h-3.5 ${isRtl ? 'rotate-180' : ''}`} />
-                </a>
+                  {s.deliverablesLabel}
+                </motion.span>
+                <div className="flex flex-col gap-2">
+                  {item.deliverables.map((deliv, dIdx) => (
+                    <motion.div 
+                      key={deliv}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.05 * dIdx }}
+                      className="flex items-center gap-2 text-xs text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors"
+                    >
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent)] shrink-0 group-hover:scale-110 transition-transform" />
+                      <span>{deliv}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           );

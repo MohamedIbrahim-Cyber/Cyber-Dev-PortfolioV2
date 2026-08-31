@@ -12,10 +12,10 @@ export const TerminalCard: React.FC<TerminalCardProps> = ({ currentLang = 'en' }
     <div 
       id="hero-terminal-card"
       dir="ltr"
-      className="w-full max-w-lg rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-xl p-5 font-mono text-xs sm:text-sm text-[var(--text-primary)] animate-floating select-none"
+      className="w-full max-w-lg rounded-3xl bg-[var(--surface)] border border-[var(--border)] shadow-xl p-5 sm:p-6 font-mono text-xs sm:text-sm text-[var(--text-primary)] animate-floating select-none spotlight-card hover:border-[var(--accent)] transition-colors duration-300"
     >
       {/* Terminal Window Header */}
-      <div className="flex items-center pb-3 mb-3 border-b border-[var(--border)] text-[var(--text-secondary)]">
+      <div className="flex items-center pb-3 mb-4 border-b border-[var(--border)] text-[var(--text-secondary)]">
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#ef4444] inline-block" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#eab308] inline-block" />
@@ -26,15 +26,15 @@ export const TerminalCard: React.FC<TerminalCardProps> = ({ currentLang = 'en' }
         </span>
       </div>
 
-      {/* Terminal Display Body */}
-      <div className="flex flex-col gap-3 leading-relaxed text-left">
+      {/* Terminal Display Body (No bottom status bar) */}
+      <div className="flex flex-col gap-3.5 leading-relaxed text-left">
         {/* Line 1 */}
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-2">
             <span className="text-[var(--accent)] font-bold">$</span>
             <span className="text-[var(--text-secondary)]">{t.whoAmI}</span>
           </div>
-          <div className="pl-4 text-[var(--text-primary)]">
+          <div className="pl-4 text-[var(--text-primary)] font-semibold">
             {t.whoAmIVal}
           </div>
         </div>
@@ -45,7 +45,7 @@ export const TerminalCard: React.FC<TerminalCardProps> = ({ currentLang = 'en' }
             <span className="text-[var(--accent)] font-bold">$</span>
             <span className="text-[var(--text-secondary)]">{t.upTime}</span>
           </div>
-          <div className="pl-4 text-[var(--text-primary)]">
+          <div className="pl-4 text-[var(--text-primary)] font-semibold">
             {t.upTimeVal}
           </div>
         </div>

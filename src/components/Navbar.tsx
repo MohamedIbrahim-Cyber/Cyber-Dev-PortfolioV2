@@ -78,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </a>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-1 md:me-3">
           {navLinks.map((link) => {
             const isActive = activeSection.toLowerCase() === link.id.toLowerCase();
             return (
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 md:ms-1.5">
           {/* Language Toggle Button */}
           <button
             id="language-toggle-btn"

@@ -7,6 +7,7 @@ import { SkillsSection } from './components/SkillsSection';
 import { ServicesSection } from './components/ServicesSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import { CursorGlow } from './components/CursorGlow';
 import { Language } from './data/translations';
 
 export default function App() {
@@ -52,7 +53,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] transition-colors duration-300 flex flex-col items-center selection:bg-[var(--accent)] selection:text-white">
+    <div className="relative min-h-screen bg-[var(--bg)] text-[var(--text-primary)] transition-colors duration-300 flex flex-col items-center selection:bg-[var(--accent)] selection:text-white">
+      {/* Interactive Cursor Spotlight Glow */}
+      <CursorGlow />
+
       {/* Floating Pill Navbar */}
       <Navbar 
         currentTheme={theme} 
@@ -62,7 +66,7 @@ export default function App() {
       />
 
       {/* Main Content Sections */}
-      <main className="w-full max-w-5xl px-4 sm:px-6 lg:px-8 flex flex-col gap-12 sm:gap-20">
+      <main className="w-full max-w-5xl px-4 sm:px-6 lg:px-8 flex flex-col gap-12 sm:gap-20 relative z-10">
         <Hero currentLang={currentLang} />
         <AboutSection currentLang={currentLang} />
         <ProjectsBento currentLang={currentLang} />

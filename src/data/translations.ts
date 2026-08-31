@@ -111,6 +111,8 @@ export interface TranslationSchema {
     namePlaceholder: string;
     emailInputLabel: string;
     emailPlaceholder: string;
+    whatsappLabel: string;
+    whatsappPlaceholder: string;
     messageLabel: string;
     messagePlaceholder: string;
     sendButton: string;
@@ -330,6 +332,8 @@ export const translations: Record<Language, TranslationSchema> = {
       namePlaceholder: 'e.g. Alex',
       emailInputLabel: 'Your Email Address',
       emailPlaceholder: 'e.g. alex@example.com',
+      whatsappLabel: 'WhatsApp Number',
+      whatsappPlaceholder: '+20 10 1234 5678',
       messageLabel: 'Message',
       messagePlaceholder: 'Tell me about your project or inquiry...',
       sendButton: 'Send Message',
@@ -547,6 +551,8 @@ export const translations: Record<Language, TranslationSchema> = {
       namePlaceholder: 'مثال: أحمد',
       emailInputLabel: 'عنوان البريد الإلكتروني',
       emailPlaceholder: 'مثال: ahmed@example.com',
+      whatsappLabel: 'رقم الواتساب',
+      whatsappPlaceholder: '+20 10 1234 5678',
       messageLabel: 'الرسالة',
       messagePlaceholder: 'أخبرني عن مشروعك أو استفسارك بالتفصيل...',
       sendButton: 'إرسال الرسالة',

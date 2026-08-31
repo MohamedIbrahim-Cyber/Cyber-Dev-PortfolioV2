@@ -79,21 +79,91 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--surface);
   border: 1px solid var(--border);
   box-shadow: var(--card-shadow);
-  transition: border-color 0.25s ease, background-color 0.25s ease;
+  transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Interactive Project Card (selective smooth hover) */
-.interactive-project-card {
+/* Card Spotlight Follower Overlay */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(184, 29, 52, 0.08),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Glowing Border Hover on About Me Small Mosaic Cards */
+.mosaic-glow-card {
   background: var(--surface);
   border: 1px solid var(--border);
   box-shadow: var(--card-shadow);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.mosaic-glow-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 25px -3px rgba(184, 29, 52, 0.4), inset 0 0 15px -4px rgba(184, 29, 52, 0.18);
+  transform: translateY(-4px);
+}
+
+/* Interactive Services Cards Hover Animation */
+.service-glow-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-glow-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 20px 35px -10px rgba(184, 29, 52, 0.25), 0 0 22px -4px rgba(184, 29, 52, 0.22);
+  transform: translateY(-8px);
+}
+
+/* Interactive Featured Project Card */
+.interactive-project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 .interactive-project-card:hover {
   border-color: var(--accent);
-  box-shadow: var(--card-shadow-hover);
-  transform: translateY(-4px);
+  box-shadow: 0 25px 45px -10px rgba(184, 29, 52, 0.35), 0 0 25px -4px rgba(184, 29, 52, 0.3);
+  transform: translateY(-8px);
+}
+
+/* Interactive Placeholder Project Card */
+.project-placeholder-card {
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.project-placeholder-card:hover {
+  transform: translateY(-6px);
+  border-style: solid;
+  border-color: var(--accent);
+  opacity: 1;
+  box-shadow: 0 15px 30px -8px rgba(184, 29, 52, 0.25), 0 0 20px -4px rgba(184, 29, 52, 0.2);
 }
 
 /* Terminal Floating Animation */
