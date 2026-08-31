@@ -71,12 +71,27 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
         setFormData({ name: '', email: '', whatsapp: '', message: '' });
       } else {
         setStatus('error');
-        setErrorMessage(result?.error || (isRtl ? 'تعذر إرسال الرسالة، يرجى المحاولة مرة أخرى أو التواصل عبر البريد.' : 'Unable to send message. Please try again or reach out directly via email.'));
+        setErrorMessage(result?.error || (isRtl ? 'تعذر إرسال الرسالة عبر الخادم. يمكنك الإرسال مباشرة عبر البريد أو واتساب:' : 'Unable to send message via server. You can send directly via email or WhatsApp below:'));
       }
     } catch {
       setStatus('error');
-      setErrorMessage(isRtl ? 'حدث خطأ في الاتصال بالخادم، يرجى المحاولة لاحقاً.' : 'Network connection issue. Please check your internet or reach out directly via email.');
+      setErrorMessage(isRtl ? 'تعذر الاتصال بالخادم. يمكنك إرسال رسالتك مباشرة عبر البريد أو واتساب:' : 'Could not reach server endpoint. You can send your message directly via email or WhatsApp:');
     }
+  };
+
+  const getMailtoUrl = () => {
+    const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name || 'Visitor'}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nWhatsApp: ${formData.whatsapp || 'N/A'}\n\nMessage:\n${formData.message}`
+    );
+    return `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+  };
+
+  const getWhatsAppUrl = () => {
+    const text = encodeURIComponent(
+      `Hello Mohamed, my name is ${formData.name || 'a visitor'} (${formData.email || 'no email'}).\n\n${formData.message}`
+    );
+    return `https://wa.me/201110295074?text=${text}`;
   };
 
   return (
@@ -355,15 +370,37 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
               </div>
 
               {errorMessage && (
-                <div className="p-3.5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 text-xs flex items-center justify-between gap-3">
-                  <span>{errorMessage}</span>
-                  <button
-                    type="button"
-                    onClick={() => setErrorMessage(null)}
-                    className="text-red-400 hover:text-red-300 font-bold px-1"
-                  >
-                    ✕
-                  </button>
+                <div className="p-4 rounded-2xl border border-red-500/30 bg-red-500/10 text-red-300 text-xs flex flex-col gap-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="leading-relaxed">{errorMessage}</span>
+                    <button
+                      type="button"
+                      onClick={() => setErrorMessage(null)}
+                      className="text-red-400 hover:text-red-200 font-bold px-1"
+                      aria-label="Dismiss error"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
+                    <a
+                      href={getMailtoUrl()}
+                      className="px-3 py-1.5 rounded-lg bg-[var(--surface)] hover:bg-[var(--accent)] text-[var(--text-primary)] hover:text-white border border-[var(--border)] font-semibold text-[11px] flex items-center gap-1.5 transition-colors"
+                    >
+                      <Mail className="w-3 h-3" />
+                      <span>{isRtl ? 'إرسال عبر البريد الإلكتروني' : 'Send via Email App'}</span>
+                    </a>
+                    <a
+                      href={getWhatsAppUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded-lg bg-[var(--surface)] hover:bg-[#25D366] text-[var(--text-primary)] hover:text-white border border-[var(--border)] font-semibold text-[11px] flex items-center gap-1.5 transition-colors"
+                    >
+                      <MessageCircle className="w-3 h-3 text-[#25D366] group-hover:text-white" />
+                      <span>{isRtl ? 'إرسال عبر واتساب' : 'Send via WhatsApp'}</span>
+                    </a>
+                  </div>
                 </div>
               )}
 
