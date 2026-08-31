@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Zap, Sparkles } from 'lucide-react';
 import { chiptuneAudio } from '../utils/audioSynth';
 import { StatsModal } from './StatsModal';
 import { Language } from '../data/translations';
@@ -22,7 +21,6 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
   const [isCharging, setIsCharging] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const isRtl = currentLang === 'ar';
 
   const startTimeRef = useRef<number | null>(null);
@@ -178,38 +176,16 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
         onPointerUp={handlePointerEnd}
         onPointerCancel={handlePointerEnd}
         onPointerLeave={(e) => {
-          setIsHovered(false);
           // Only release if not capturing pointer
           if (!activePointerIdRef.current) {
             handlePointerEnd(e);
           }
         }}
-        onPointerEnter={() => setIsHovered(true)}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
         onContextMenu={(e) => e.preventDefault()}
         onDragStart={(e) => e.preventDefault()}
       >
-        {/* Desktop Hover Tooltip (Hidden on mobile) */}
-        <div
-          className={`hidden sm:flex absolute top-4 inset-x-0 z-30 justify-center pointer-events-none transition-all duration-300 ${
-            isHovered || isCharging
-              ? 'opacity-100 transform translate-y-0'
-              : 'opacity-0 transform -translate-y-2'
-          }`}
-        >
-          <div className="px-3 py-1 rounded-full bg-[var(--surface)]/90 backdrop-blur-md border border-[var(--accent)]/50 text-[var(--text-primary)] font-mono text-[11px] flex items-center gap-1.5 shadow-[0_0_15px_rgba(184,29,52,0.35)]">
-            <Sparkles className="w-3 h-3 text-[var(--accent)]" />
-            <span>
-              {isCharging
-                ? `${isRtl ? 'شحن الطاقة:' : 'CHARGING:'} ${Math.round(progress)}%`
-                : isRtl
-                ? 'اضغط مطولاً أو Space للشحن'
-                : 'Hold or Press [Space] to Charge'}
-            </span>
-          </div>
-        </div>
-
         {/* Avatar Image with dynamic scale & brightness during charge */}
         <img
           src={imageSrc}
@@ -242,7 +218,7 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
           }}
         />
 
-        {/* Circular SVG Energy Charge Meter */}
+        {/* Circular SVG Energy Charge Meter (Active only while charging) */}
         <div
           className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-200 ${
             isCharging ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
@@ -289,29 +265,6 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
                 {progress >= 90 ? 'OVERLOAD!' : 'CHARGING'}
               </span>
             </div>
-          </div>
-        </div>
-
-        {/* Bottom Interactive Hint Pill */}
-        <div className="absolute bottom-4 left-0 right-0 z-20 flex justify-center px-4 pointer-events-none">
-          <div
-            className={`px-3.5 py-1.5 rounded-full backdrop-blur-md border transition-all duration-300 flex items-center gap-1.5 text-xs font-mono select-none ${
-              isCharging
-                ? 'bg-[var(--accent-subtle)] border-[var(--accent)] text-[var(--accent)] shadow-[0_0_15px_rgba(184,29,52,0.6)] scale-105'
-                : 'bg-black/60 border-white/20 text-white/80 group-hover:border-[var(--accent)]/70 group-hover:text-white group-hover:shadow-[0_0_15px_rgba(184,29,52,0.3)]'
-            }`}
-          >
-            <Zap className="w-3.5 h-3.5 text-[var(--accent)]" />
-            <span className="font-semibold text-[11px] tracking-wide flex items-center gap-1">
-              {isCharging
-                ? isRtl ? 'جارِ الشحن...' : 'CHARGING ATTACK...'
-                : (
-                  <>
-                    <span>{isRtl ? 'اضغط مطولاً للشحن' : 'HOLD TO CHARGE'}</span>
-                    <span className="hidden sm:inline opacity-60 text-[10px]">[SPACE]</span>
-                  </>
-                )}
-            </span>
           </div>
         </div>
 
