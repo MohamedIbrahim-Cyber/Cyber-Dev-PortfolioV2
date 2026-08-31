@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* Original Light Theme */
+  /* Light theme */
   --bg: #f7f5f2;
   --surface: #ffffff;
   --border: #e6dfd5;
@@ -27,7 +27,7 @@
 }
 
 [data-theme="dark"], .dark {
-  /* Original Dark Theme */
+  /* Dark theme */
   --bg: #161616;
   --surface: #282828;
   --border: #710014;
@@ -66,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-header);
 }
 
-/* Glassmorphism Navigation */
+/* Glass navigation */
 .glass-nav {
   background: var(--nav-bg);
   backdrop-filter: blur(20px) saturate(180%);
@@ -74,7 +74,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--nav-border);
 }
 
-/* Standard Card (no jump on hover) */
+/* Surface card */
 .surface-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Card Spotlight Follower Overlay */
+/* Spotlight card overlay */
 .spotlight-card {
   position: relative;
   overflow: hidden;
@@ -108,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 
-/* Glowing Border Hover on About Me Small Mosaic Cards */
+/* Mosaic glow card */
 .mosaic-glow-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -122,7 +122,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-4px);
 }
 
-/* Interactive Services Cards Hover Animation */
+/* Service card glow */
 .service-glow-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-8px);
 }
 
-/* Interactive Featured Project Card */
+/* Featured project card */
 .interactive-project-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -150,7 +150,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-8px);
 }
 
-/* Interactive Placeholder Project Card */
+/* Placeholder project card */
 .project-placeholder-card {
   background: var(--surface);
   border: 1px dashed var(--border);
@@ -166,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 15px 30px -8px rgba(184, 29, 52, 0.25), 0 0 20px -4px rgba(184, 29, 52, 0.2);
 }
 
-/* Terminal Floating Animation */
+/* Floating animation */
 @keyframes floating {
   0% { transform: translateY(0px); }
   100% { transform: translateY(-8px); }
@@ -177,7 +177,7 @@ h1, h2, h3, h4, h5, h6 {
   will-change: transform;
 }
 
-/* Terminal Cursor animation */
+/* Cursor blink */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
@@ -192,7 +192,7 @@ h1, h2, h3, h4, h5, h6 {
   animation: blink 1s step-end infinite;
 }
 
-/* Reduced motion accessibility */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-floating {
     animation: none !important;
@@ -203,7 +203,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Focus Ring */
+/* Focus ring */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;

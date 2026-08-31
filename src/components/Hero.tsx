@@ -19,7 +19,7 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
       className="w-full pt-28 pb-12 sm:pt-36 sm:pb-16 flex flex-col items-center overflow-hidden"
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        {/* Left Column: Heading & CTAs (Slides in from Left side) */}
+        {/* Left column */}
         <motion.div 
           initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -27,7 +27,7 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7 flex flex-col gap-6 text-start"
         >
-          {/* Main Title - Text Fading In */}
+          {/* Main title */}
           <motion.h1 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -40,7 +40,7 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
             {t.hero.titleSuffix}
           </motion.h1>
 
-          {/* Subtitle - Text Fading In */}
+          {/* Subtitle */}
           <motion.p 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -53,7 +53,7 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
             {t.hero.subtitleP2}
           </motion.p>
 
-          {/* Action Buttons & Socials - Text Fading In */}
+          {/* Actions */}
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -102,7 +102,7 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
           </motion.div>
         </motion.div>
 
-        {/* Right Column: Terminal Component (Slides in from Right side) */}
+        {/* Right terminal */}
         <motion.div 
           initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}

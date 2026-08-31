@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { name: t.nav.contact, id: 'Contact', href: '#Contact' },
   ];
 
-  // Close drawer on ESC key
+  // Escape key listener
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileOpen) {
@@ -39,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [mobileOpen]);
 
-  // Track active section on scroll
+  // Section observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -64,7 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         aria-label="Main Navigation"
         className="pointer-events-auto w-full max-w-3xl glass-nav rounded-full px-3 py-2 sm:px-4 sm:py-2.5 flex items-center justify-between shadow-lg transition-all duration-300"
       >
-        {/* Brand Logo */}
+        {/* Brand logo */}
         <a 
           href="#" 
           id="nav-brand"
@@ -77,7 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <span className="hidden sm:inline">CyberDev</span>
         </a>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-1 md:me-3">
           {navLinks.map((link) => {
             const isActive = activeSection.toLowerCase() === link.id.toLowerCase();
@@ -97,9 +97,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </div>
 
-        {/* Action Controls */}
+        {/* Action controls */}
         <div className="flex items-center gap-2 md:ms-1.5">
-          {/* Language Toggle Button */}
+          {/* Language toggle */}
           <button
             id="language-toggle-btn"
             type="button"
@@ -113,7 +113,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
           </button>
 
-          {/* Theme Toggle Button */}
+          {/* Theme toggle */}
           <button
             id="theme-toggle-btn"
             type="button"
@@ -128,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </button>
 
-          {/* Download CV (Desktop) with blank src */}
+          {/* Download CV */}
           <a
             href=""
             download
@@ -139,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>{t.nav.downloadCv}</span>
           </a>
 
-          {/* Mobile Menu Hamburger */}
+          {/* Mobile menu */}
           <button
             id="mobile-menu-toggle"
             type="button"
@@ -153,7 +153,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </nav>
 
-      {/* Mobile Drawer */}
+      {/* Mobile drawer */}
       {mobileOpen && (
         <div 
           id="mobile-nav-backdrop"
@@ -193,7 +193,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
             </div>
 
-            {/* Mobile Language and CV Actions */}
+            {/* Mobile actions */}
             <div className="pt-3 border-t border-[var(--border)] flex flex-col gap-3">
               <button
                 type="button"

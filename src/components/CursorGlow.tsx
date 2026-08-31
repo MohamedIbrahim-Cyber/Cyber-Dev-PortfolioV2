@@ -5,7 +5,7 @@ export const CursorGlow: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only enable on fine pointer devices (desktop mouse)
+    // Desktop pointer check
     if (typeof window === 'undefined' || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
       return;
     }
@@ -19,7 +19,7 @@ export const CursorGlow: React.FC = () => {
         if (!isVisible) setIsVisible(true);
       });
 
-      // Update card-level CSS variables on hovered spotlight cards
+      // Update spotlight coordinates
       const target = (e.target as HTMLElement)?.closest?.('.spotlight-card') as HTMLElement | null;
       if (target) {
         const rect = target.getBoundingClientRect();
@@ -58,7 +58,7 @@ export const CursorGlow: React.FC = () => {
         opacity: isVisible ? 1 : 0,
       }}
     >
-      {/* Outer ambient cursor glow */}
+      {/* Outer ambient glow */}
       <div
         className="absolute rounded-full -translate-x-1/2 -translate-y-1/2 blur-2xl pointer-events-none transition-transform ease-out duration-75"
         style={{
@@ -69,7 +69,7 @@ export const CursorGlow: React.FC = () => {
           background: 'radial-gradient(circle, rgba(184, 29, 52, 0.06) 0%, rgba(184, 29, 52, 0.02) 45%, transparent 70%)',
         }}
       />
-      {/* Inner bright core cursor glow */}
+      {/* Inner core glow */}
       <div
         className="absolute rounded-full -translate-x-1/2 -translate-y-1/2 blur-lg pointer-events-none transition-transform ease-out duration-75"
         style={{

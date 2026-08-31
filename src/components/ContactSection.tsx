@@ -52,7 +52,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
     setErrorMessage(null);
 
     try {
-      // Securely submit payload to backend API proxy route
+      // API proxy submission
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -85,7 +85,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
       aria-labelledby="contact-heading"
       className="w-full py-12 sm:py-16 scroll-mt-24 flex flex-col gap-8 overflow-hidden"
     >
-      {/* Section Header */}
+      {/* Section header */}
       <div className="pb-4 border-b border-[var(--border)]">
         <motion.h2 
           id="contact-heading" 
@@ -100,7 +100,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Direct Info Card (Slides from Left) */}
+        {/* Left column */}
         <motion.div 
           initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -140,7 +140,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
           </div>
 
           <div className="flex flex-col gap-5 pt-4 border-t border-[var(--border)]">
-            {/* Email Copy Card */}
+            {/* Email item */}
             <div className="flex flex-col gap-2">
               <span className="text-xs font-mono text-[var(--text-secondary)] font-semibold">
                 {c.emailLabel}
@@ -173,7 +173,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
               </div>
             </div>
 
-            {/* Direct WhatsApp Info & Copy */}
+            {/* WhatsApp item */}
             <div className="flex flex-col gap-2">
               <span className="text-xs font-mono text-[var(--text-secondary)] font-semibold">
                 {c.whatsappLabel}
@@ -210,13 +210,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
               </div>
             </div>
 
-            {/* Social & Messaging Profiles */}
+            {/* Social links */}
             <div className="flex flex-col gap-2">
               <span className="text-xs font-mono text-[var(--text-secondary)] font-semibold">
                 {c.socialProfiles}
               </span>
               <div className="flex flex-wrap items-center gap-2.5">
-                {/* WhatsApp Link Option */}
+                {/* WhatsApp button */}
                 <a
                   href="https://wa.me/201110295074"
                   target="_blank"
@@ -254,7 +254,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
           </div>
         </motion.div>
 
-        {/* Right Column: Interactive Contact Form (Slides from Right) */}
+        {/* Form column */}
         <motion.div 
           initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}

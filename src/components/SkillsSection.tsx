@@ -28,7 +28,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ currentLang }) => 
       aria-labelledby="skills-heading"
       className="w-full py-12 sm:py-16 scroll-mt-24 flex flex-col gap-8 overflow-hidden"
     >
-      {/* Section Header */}
+      {/* Section header */}
       <div className="pb-4 border-b border-[var(--border)]">
         <motion.h2 
           id="skills-heading" 
@@ -42,10 +42,10 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ currentLang }) => 
         </motion.h2>
       </div>
 
-      {/* 2x2 Grid of Technical Capabilities: Alternating Left / Right Slide */}
+      {/* Skills grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {s.categories.map((cat, idx) => {
-          // Left-hand cards (idx 0, 2) from left; Right-hand cards (idx 1, 3) from right
+          // Offsets
           const isLeft = idx % 2 === 0;
           const xOffset = isLeft ? (isRtl ? 50 : -50) : (isRtl ? -50 : 50);
 

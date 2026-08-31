@@ -38,7 +38,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ currentLang, o
       aria-labelledby="services-heading"
       className="w-full py-12 sm:py-16 scroll-mt-24 flex flex-col gap-8 overflow-hidden"
     >
-      {/* Section Header */}
+      {/* Section header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-4 border-b border-[var(--border)]">
         <motion.h2 
           id="services-heading" 
@@ -60,7 +60,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ currentLang, o
         </a>
       </div>
 
-      {/* 3-Column Services: Left card from left, center from bottom, right from right */}
+      {/* Services grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
         {s.items.map((item, idx) => {
           const xOffset = idx === 0 ? (isRtl ? 50 : -50) : idx === 2 ? (isRtl ? -50 : 50) : 0;
@@ -111,7 +111,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ currentLang, o
                 </motion.p>
               </div>
 
-              {/* Deliverables Checklist & CTA */}
+              {/* Deliverables */}
               <div className="pt-4 border-t border-[var(--border)] flex flex-col gap-3.5">
                 <div className="flex flex-col gap-2">
                   <motion.span 
@@ -139,7 +139,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ currentLang, o
                   </div>
                 </div>
 
-                {/* Interactive Inquire Prompt Button */}
+                {/* Inquire button */}
                 <div className="pt-2 flex items-center justify-between text-xs font-semibold text-[var(--accent)] group-hover:text-[var(--accent-hover)] transition-colors border-t border-[var(--border)]/60">
                   <span>{s.clickToInquire}</span>
                   <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1.5 ${isRtl ? 'rotate-180 group-hover:-translate-x-1.5' : ''}`} />

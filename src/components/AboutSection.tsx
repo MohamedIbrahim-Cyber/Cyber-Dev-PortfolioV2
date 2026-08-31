@@ -27,10 +27,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
       aria-labelledby="about-heading"
       className="w-full py-12 sm:py-16 scroll-mt-24 flex flex-col gap-10 overflow-hidden"
     >
-      {/* Top 3 Stats Row: Left card slides from left, center from bottom, right from right */}
+      {/* Top stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
         {t.about.stats.map((stat, idx) => {
-          // Alternating directions: Left card from left, center with delay, right card from right
+          // Stat offsets
           const xOffset = idx === 0 ? (isRtl ? 50 : -50) : idx === 2 ? (isRtl ? -50 : 50) : 0;
           const yOffset = idx === 1 ? 30 : 0;
 
@@ -82,9 +82,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
         })}
       </div>
 
-      {/* Main Bento: Left Mosaic (Sliding from Left) + Right Bio (Sliding from Right) */}
+      {/* Bento layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        {/* Left Side: Custom Visual Bento Grid */}
+        {/* Left bento */}
         <motion.div 
           initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -92,9 +92,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
         >
-          {/* Left Column: Hardware Pill + Tall Vertical Card (Shadow Artwork) */}
+          {/* Left column */}
           <div className="flex flex-col gap-4">
-            {/* Top Crimson Pill - Hardware Prototyping Interest */}
+            {/* Hardware pill */}
             <div 
               id="about-pill-left-top"
               className="min-h-[72px] sm:min-h-[76px] rounded-[22px] bg-[var(--accent)] text-white shadow-md flex items-center gap-3.5 px-4 sm:px-5 py-3 transition-all duration-300 hover:brightness-110 group select-none"
@@ -112,12 +112,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
               </div>
             </div>
 
-            {/* Tall Vertical Artwork Card (No text labels) */}
+            {/* Artwork card */}
             <div 
               id="about-card-shadow"
               className="relative min-h-[380px] sm:min-h-[420px] flex-1 rounded-[28px] overflow-hidden border border-[#b81d34]/40 bg-[#0f1412] shadow-lg group flex flex-col justify-end"
             >
-              {/* Image slot with uploaded artwork */}
+              {/* Artwork image */}
               <img 
                 src="/shadow-card.png"
                 onError={(e) => {
@@ -130,9 +130,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
             </div>
           </div>
 
-          {/* Right Column: Photo Card + Video Editing Pill + Edu Years Stat Card */}
+          {/* Right column */}
           <div className="flex flex-col gap-4">
-            {/* Top Photo Card (Sunset / Campus Photo - No text labels) */}
+            {/* Campus photo */}
             <div 
               id="about-card-campus"
               className="relative h-48 sm:h-52 rounded-[28px] overflow-hidden border border-[var(--border)] bg-[#121517] shadow-md group"
@@ -148,7 +148,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
               />
             </div>
 
-            {/* Middle Crimson Pill - Video Editing Interest */}
+            {/* Video pill */}
             <div 
               id="about-pill-right-mid"
               className="min-h-[72px] sm:min-h-[76px] rounded-[22px] bg-[var(--accent)] text-white shadow-md flex items-center gap-3.5 px-4 sm:px-5 py-3 transition-all duration-300 hover:brightness-110 group select-none"
@@ -166,7 +166,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
               </div>
             </div>
 
-            {/* Bottom Dark Stat Card (+2 Edu. Years) */}
+            {/* Edu stats card */}
             <div 
               id="about-card-edu-years"
               className="flex-1 min-h-[140px] rounded-[28px] p-6 flex flex-col items-center justify-center text-center gap-1.5 border border-[var(--border)] bg-[#17191b] shadow-md hover:border-[var(--accent)] transition-all duration-300 group cursor-default"
@@ -184,7 +184,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
           </div>
         </motion.div>
 
-        {/* Right: Rich Bio Card - Slides from Right */}
+        {/* Right bio card */}
         <motion.div 
           initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}

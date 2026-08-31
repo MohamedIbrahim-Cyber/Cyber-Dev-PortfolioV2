@@ -18,7 +18,7 @@ export const ProjectsBento: React.FC<ProjectsBentoProps> = ({ currentLang }) => 
       aria-labelledby="projects-heading"
       className="w-full py-12 sm:py-16 scroll-mt-24 flex flex-col gap-8 overflow-hidden"
     >
-      {/* Section Header */}
+      {/* Section header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-4 border-b border-[var(--border)]">
         <div>
           <motion.h2 
@@ -44,9 +44,9 @@ export const ProjectsBento: React.FC<ProjectsBentoProps> = ({ currentLang }) => 
         </a>
       </div>
 
-      {/* Bento Grid: Alternating Left / Right Slide-In */}
+      {/* Bento grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Project 1: Featured 2-Column Span Card (Course Organizer - Slides from Left) */}
+        {/* Project 1 */}
         <motion.article 
           id="project-course-organizer"
           initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
@@ -55,22 +55,22 @@ export const ProjectsBento: React.FC<ProjectsBentoProps> = ({ currentLang }) => 
           transition={{ duration: 0.65, delay: 0, ease: [0.16, 1, 0.3, 1] }}
           className="md:col-span-2 lg:col-span-2 relative rounded-3xl overflow-hidden min-h-[380px] sm:min-h-[420px] flex flex-col justify-between p-6 sm:p-8 border border-[var(--border)] shadow-md group interactive-project-card spotlight-card"
         >
-          {/* Background Image Layer with Scrim Overlay */}
+          {/* Background image layer */}
           <div className="absolute inset-0 z-0 overflow-hidden bg-black/40">
             <img
               src="/course-organizer.svg"
               alt="Course Organizer Preview"
               onError={(e) => {
-                // Fallback to stylized high-contrast graphic if needed
+                // Fallback image
                 (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1200&q=80';
               }}
               className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
             />
-            {/* Multi-stop High Contrast Scrim */}
+            {/* Scrim overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/35 backdrop-blur-[0.5px]" />
           </div>
 
-          {/* Top Row: Tags & External Live Demo Circle */}
+          {/* Top row */}
           <div className="relative z-10 flex items-start justify-between gap-4">
             <div className="flex flex-wrap gap-2 font-mono text-xs">
               {p.items[0].tags.map((tag) => (
@@ -98,7 +98,7 @@ export const ProjectsBento: React.FC<ProjectsBentoProps> = ({ currentLang }) => 
             </a>
           </div>
 
-          {/* Bottom Content: Title, Description, and Actions */}
+          {/* Bottom content */}
           <div className="relative z-10 flex flex-col gap-3 mt-12">
             <motion.h3 
               initial={{ opacity: 0 }}
@@ -143,7 +143,7 @@ export const ProjectsBento: React.FC<ProjectsBentoProps> = ({ currentLang }) => 
           </div>
         </motion.article>
 
-        {/* Project 2: Upcoming Project Placeholder (Slides from Right) */}
+        {/* Project 2 */}
         <motion.article 
           id="project-placeholder-1"
           initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
@@ -197,7 +197,7 @@ export const ProjectsBento: React.FC<ProjectsBentoProps> = ({ currentLang }) => 
           </div>
         </motion.article>
 
-        {/* Project 3: Upcoming Project Placeholder (Slides from Left) */}
+        {/* Project 3 */}
         <motion.article 
           id="project-placeholder-2"
           initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
@@ -251,7 +251,7 @@ export const ProjectsBento: React.FC<ProjectsBentoProps> = ({ currentLang }) => 
           </div>
         </motion.article>
 
-        {/* Project 4: 2-Column Span Upcoming Project Placeholder (Slides from Right) */}
+        {/* Project 4 */}
         <motion.article 
           id="project-placeholder-3"
           initial={{ opacity: 0, x: isRtl ? -50 : 50 }}

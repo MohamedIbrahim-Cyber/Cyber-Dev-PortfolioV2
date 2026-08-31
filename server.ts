@@ -4,7 +4,7 @@ import fs from 'fs';
 import { createServer as createViteServer } from 'vite';
 import dotenv from 'dotenv';
 
-// Load environment variables (.env.local takes precedence over .env)
+// Load environment variables
 const envLocalPath = path.resolve(process.cwd(), '.env.local');
 if (fs.existsSync(envLocalPath)) {
   dotenv.config({ path: envLocalPath });
@@ -14,19 +14,19 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-// Body parser middleware with strict payload size limit
+// Body parser
 app.use(express.json({ limit: '64kb' }));
 
-// In-memory rate limiter for contact form abuse prevention
+// Rate limiter
 interface RateLimitRecord {
   count: number;
   resetAt: number;
 }
 const ipRateLimitMap = new Map<string, RateLimitRecord>();
-const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute window
-const MAX_REQUESTS_PER_WINDOW = 5; // Max 5 submissions per minute per IP
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const MAX_REQUESTS_PER_WINDOW = 5;
 
-// Cleanup stale rate limit records every 5 minutes
+// Cleanup rate limits
 setInterval(() => {
   const now = Date.now();
   for (const [ip, record] of ipRateLimitMap.entries()) {
@@ -45,10 +45,10 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-// Secure Contact Form Submission Proxy
+// Contact endpoint
 app.post('/api/contact', async (req, res) => {
   try {
-    // 1. IP Rate Limiting Check
+    // Rate limit check
     const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket.remoteAddress || 'unknown';
     const now = Date.now();
     const existingRecord = ipRateLimitMap.get(clientIp);
@@ -69,7 +69,7 @@ app.post('/api/contact', async (req, res) => {
       ipRateLimitMap.set(clientIp, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
     }
 
-    // 2. Input Validation & Sanitization
+    // Input validation
     const { name, email, whatsapp, message } = req.body || {};
 
     if (!name || typeof name !== 'string' || name.trim().length === 0) {
@@ -82,13 +82,13 @@ app.post('/api/contact', async (req, res) => {
       return res.status(400).json({ success: false, error: 'Message content is required.' });
     }
 
-    // Bounds & length protection
+    // Sanitization
     const sanitizedName = name.trim().slice(0, 100);
     const sanitizedEmail = email.trim().slice(0, 200);
     const sanitizedWhatsapp = typeof whatsapp === 'string' ? whatsapp.trim().slice(0, 50) : '';
     const sanitizedMessage = message.trim().slice(0, 4000);
 
-    // 3. Retrieve Webhook URL strictly from server environment
+    // Webhook configuration
     const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
 
     if (!webhookUrl) {
@@ -99,15 +99,15 @@ app.post('/api/contact', async (req, res) => {
       });
     }
 
-    // 4. Construct Discord Rich Embed Payload
+    // Discord payload
     const discordPayload = {
       username: 'CyberDev Portfolio Bot',
       avatar_url: 'https://raw.githubusercontent.com/MohamedIbrahim-Cyber/MohamedIbrahim-Cyber/main/avatar.png',
-      allowed_mentions: { parse: [] }, // Suppresses all @everyone, @here, role, and user mention pings
+      allowed_mentions: { parse: [] },
       embeds: [
         {
           title: '📬 New Portfolio Contact Submission',
-          color: 0xb81d34, // Crimson Accent
+          color: 0xb81d34,
           fields: [
             { name: '👤 Sender Name', value: sanitizedName, inline: true },
             { name: '📧 Sender Email', value: sanitizedEmail, inline: true },
@@ -120,7 +120,7 @@ app.post('/api/contact', async (req, res) => {
       ],
     };
 
-    // 5. Forward to Discord with 8-second timeout
+    // Forward request
     const discordResponse = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
@@ -167,7 +167,7 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-// Vite middleware & SPA serving
+// Vite middleware
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({

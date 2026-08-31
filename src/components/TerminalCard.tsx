@@ -14,7 +14,7 @@ export const TerminalCard: React.FC<TerminalCardProps> = ({ currentLang = 'en' }
       dir="ltr"
       className="w-full max-w-lg rounded-3xl bg-[var(--surface)] border border-[var(--border)] shadow-xl p-5 sm:p-6 font-mono text-xs sm:text-sm text-[var(--text-primary)] animate-floating select-none spotlight-card hover:border-[var(--accent)] transition-colors duration-300"
     >
-      {/* Terminal Window Header */}
+      {/* Window header */}
       <div className="flex items-center pb-3 mb-4 border-b border-[var(--border)] text-[var(--text-secondary)]">
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#ef4444] inline-block" />
@@ -26,9 +26,9 @@ export const TerminalCard: React.FC<TerminalCardProps> = ({ currentLang = 'en' }
         </span>
       </div>
 
-      {/* Terminal Display Body (No bottom status bar) */}
+      {/* Terminal body */}
       <div className="flex flex-col gap-3.5 leading-relaxed text-left">
-        {/* Line 1 - WhoAmI */}
+        {/* Line 1 */}
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-2">
             <span className="text-[var(--accent)] font-bold">$</span>
@@ -39,7 +39,7 @@ export const TerminalCard: React.FC<TerminalCardProps> = ({ currentLang = 'en' }
           </div>
         </div>
 
-        {/* Line 2 - JSON Block */}
+        {/* Line 2 */}
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-2">
             <span className="text-[var(--accent)] font-bold">$</span>
@@ -57,7 +57,7 @@ export const TerminalCard: React.FC<TerminalCardProps> = ({ currentLang = 'en' }
           </div>
         </div>
 
-        {/* Blinking Prompt Line */}
+        {/* Blinking prompt */}
         <div className="flex items-center gap-2 pt-1">
           <span className="text-[var(--accent)] font-bold">$</span>
           <span className="cursor-blink" />
