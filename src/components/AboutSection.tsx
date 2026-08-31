@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { GraduationCap, Cpu, Layers, Sparkles, Code2, Film } from 'lucide-react';
 import { translations, Language } from '../data/translations';
+import { HoldToChargeAvatar } from './HoldToChargeAvatar';
 
 interface AboutSectionProps {
   currentLang: Language;
@@ -112,20 +113,16 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
               </div>
             </div>
 
-            {/* Artwork card */}
+            {/* Artwork card with Hold to Charge Easter Egg */}
             <div 
               id="about-card-shadow"
               className="relative min-h-[380px] sm:min-h-[420px] flex-1 rounded-[28px] overflow-hidden border border-[#b81d34]/40 bg-[#0f1412] shadow-lg group flex flex-col justify-end"
             >
-              {/* Artwork image */}
-              <img 
-                src="/shadow-card.png"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=800&auto=format&fit=crop";
-                }}
-                alt="Shadow Character Artwork"
-                id="about-shadow-photo"
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              <HoldToChargeAvatar
+                imageSrc="/shadow-card.png"
+                altText="Shadow Character Artwork"
+                className="absolute inset-0 w-full h-full"
+                currentLang={currentLang}
               />
             </div>
           </div>
