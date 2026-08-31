@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Zap, Sparkles, Keyboard } from 'lucide-react';
+import { Zap, Sparkles } from 'lucide-react';
 import { chiptuneAudio } from '../utils/audioSynth';
-import { SecretLevelUpModal } from './SecretLevelUpModal';
+import { StatsModal } from './StatsModal';
 import { Language } from '../data/translations';
 
 interface HoldToChargeAvatarProps {
@@ -168,7 +168,7 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
             : 'Interactive avatar easter egg - hold pointer or spacebar for 1.5 seconds to charge secret attack'
         }
         aria-pressed={isCharging}
-        className={`relative select-none touch-none cursor-pointer overflow-hidden group outline-none focus-visible:ring-2 focus-visible:ring-[#06b6d4] focus-visible:ring-offset-2 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.35)] hover:border-[#06b6d4]/80 ${className}`}
+        className={`relative select-none touch-none cursor-pointer overflow-hidden group outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 transition-all duration-300 hover:shadow-[0_0_30px_rgba(184,29,52,0.35)] hover:border-[var(--accent)] ${className}`}
         style={{
           WebkitTouchCallout: 'none',
           WebkitUserSelect: 'none',
@@ -198,8 +198,8 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
               : 'opacity-0 transform -translate-y-2'
           }`}
         >
-          <div className="px-3 py-1 rounded-full bg-[#0a0d10]/90 backdrop-blur-md border border-[#06b6d4]/60 text-[#22d3ee] font-mono text-[11px] flex items-center gap-1.5 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
-            <Sparkles className="w-3 h-3 text-[#06b6d4]" />
+          <div className="px-3 py-1 rounded-full bg-[var(--surface)]/90 backdrop-blur-md border border-[var(--accent)]/50 text-[var(--text-primary)] font-mono text-[11px] flex items-center gap-1.5 shadow-[0_0_15px_rgba(184,29,52,0.35)]">
+            <Sparkles className="w-3 h-3 text-[var(--accent)]" />
             <span>
               {isCharging
                 ? `${isRtl ? 'شحن الطاقة:' : 'CHARGING:'} ${Math.round(progress)}%`
@@ -221,7 +221,7 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
           }}
           className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-200 pointer-events-none ${
             isCharging
-              ? 'scale-95 brightness-110 filter drop-shadow-[0_0_20px_rgba(6,182,212,0.7)]'
+              ? 'scale-95 brightness-110 filter drop-shadow-[0_0_20px_rgba(184,29,52,0.6)]'
               : 'group-hover:scale-105 group-hover:brightness-105'
           }`}
           style={{
@@ -231,14 +231,14 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
           }}
         />
 
-        {/* Dynamic Glowing Cyan Charging Overlay */}
+        {/* Dynamic Glowing Crimson Charging Overlay */}
         <div
           className={`absolute inset-0 pointer-events-none transition-opacity duration-200 ${
             isCharging ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
-            background: `radial-gradient(circle at center, rgba(6, 182, 212, ${0.18 + (progress / 100) * 0.35}) 0%, rgba(184, 29, 52, 0.12) 70%, transparent 100%)`,
-            boxShadow: isCharging ? 'inset 0 0 40px rgba(6, 182, 212, 0.65)' : 'none',
+            background: `radial-gradient(circle at center, rgba(184, 29, 52, ${0.25 + (progress / 100) * 0.45}) 0%, rgba(18, 24, 21, 0.4) 70%, transparent 100%)`,
+            boxShadow: isCharging ? 'inset 0 0 40px rgba(184, 29, 52, 0.65)' : 'none',
           }}
         />
 
@@ -252,7 +252,7 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
             <svg
               width={size}
               height={size}
-              className="rotate-[-90deg] filter drop-shadow-[0_0_14px_#06b6d4]"
+              className="rotate-[-90deg] filter drop-shadow-[0_0_14px_rgba(184,29,52,0.8)]"
             >
               {/* Background Track */}
               <circle
@@ -260,7 +260,7 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
                 cy={size / 2}
                 r={radius}
                 fill="none"
-                stroke="rgba(6, 182, 212, 0.25)"
+                stroke="rgba(184, 29, 52, 0.25)"
                 strokeWidth={strokeWidth}
               />
               {/* Animated Glowing Progress Ring */}
@@ -269,7 +269,7 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
                 cy={size / 2}
                 r={radius}
                 fill="none"
-                stroke="#06b6d4"
+                stroke="var(--accent, #b81d34)"
                 strokeWidth={strokeWidth}
                 strokeDasharray={circumference}
                 strokeDashoffset={strokeDashoffset}
@@ -282,10 +282,10 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
 
             {/* Center Percentage & Status Indicator */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center font-mono">
-              <span className="text-[#22d3ee] font-extrabold text-2xl tracking-tighter drop-shadow-[0_0_8px_#06b6d4]">
+              <span className="text-[var(--accent)] font-extrabold text-2xl tracking-tighter drop-shadow-[0_0_10px_rgba(184,29,52,0.6)]">
                 {Math.round(progress)}%
               </span>
-              <span className="text-[10px] text-white/90 font-bold uppercase tracking-wider bg-black/60 px-2 py-0.5 rounded-full border border-[#06b6d4]/50 mt-1">
+              <span className="text-[10px] text-white/90 font-bold uppercase tracking-wider bg-black/70 px-2 py-0.5 rounded-full border border-[var(--accent)]/50 mt-1">
                 {progress >= 90 ? 'OVERLOAD!' : 'CHARGING'}
               </span>
             </div>
@@ -297,11 +297,11 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
           <div
             className={`px-3.5 py-1.5 rounded-full backdrop-blur-md border transition-all duration-300 flex items-center gap-1.5 text-xs font-mono select-none ${
               isCharging
-                ? 'bg-[#06b6d4]/30 border-[#06b6d4] text-[#22d3ee] shadow-[0_0_15px_rgba(6,182,212,0.6)] scale-105'
-                : 'bg-black/60 border-white/20 text-white/80 group-hover:border-[#06b6d4]/70 group-hover:text-white group-hover:shadow-[0_0_12px_rgba(6,182,212,0.3)]'
+                ? 'bg-[var(--accent-subtle)] border-[var(--accent)] text-[var(--accent)] shadow-[0_0_15px_rgba(184,29,52,0.6)] scale-105'
+                : 'bg-black/60 border-white/20 text-white/80 group-hover:border-[var(--accent)]/70 group-hover:text-white group-hover:shadow-[0_0_15px_rgba(184,29,52,0.3)]'
             }`}
           >
-            <Zap className={`w-3.5 h-3.5 ${isCharging ? 'text-[#06b6d4] animate-bounce' : 'text-[#b81d34] group-hover:text-[#06b6d4]'}`} />
+            <Zap className="w-3.5 h-3.5 text-[var(--accent)]" />
             <span className="font-semibold text-[11px] tracking-wide flex items-center gap-1">
               {isCharging
                 ? isRtl ? 'جارِ الشحن...' : 'CHARGING ATTACK...'
@@ -316,14 +316,14 @@ export const HoldToChargeAvatar: React.FC<HoldToChargeAvatarProps> = ({
         </div>
 
         {/* Subtle Cyber Target Corners */}
-        <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-[#06b6d4]/60 group-hover:border-[#06b6d4] transition-colors pointer-events-none" />
-        <div className="absolute top-3 right-3 w-3 h-3 border-t-2 border-r-2 border-[#06b6d4]/60 group-hover:border-[#06b6d4] transition-colors pointer-events-none" />
-        <div className="absolute bottom-3 left-3 w-3 h-3 border-b-2 border-l-2 border-[#06b6d4]/60 group-hover:border-[#06b6d4] transition-colors pointer-events-none" />
-        <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-[#06b6d4]/60 group-hover:border-[#06b6d4] transition-colors pointer-events-none" />
+        <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-[var(--accent)]/40 group-hover:border-[var(--accent)] transition-colors pointer-events-none" />
+        <div className="absolute top-3 right-3 w-3 h-3 border-t-2 border-r-2 border-[var(--accent)]/40 group-hover:border-[var(--accent)] transition-colors pointer-events-none" />
+        <div className="absolute bottom-3 left-3 w-3 h-3 border-b-2 border-l-2 border-[var(--accent)]/40 group-hover:border-[var(--accent)] transition-colors pointer-events-none" />
+        <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-[var(--accent)]/40 group-hover:border-[var(--accent)] transition-colors pointer-events-none" />
       </div>
 
-      {/* Secret Level-Up Modal */}
-      <SecretLevelUpModal
+      {/* Secret Stats Modal */}
+      <StatsModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         currentLang={currentLang}
