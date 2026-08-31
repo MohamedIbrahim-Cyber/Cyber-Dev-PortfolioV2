@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { GraduationCap, Cpu, Layers, Sparkles, Code2 } from 'lucide-react';
+import { GraduationCap, Cpu, Layers, Sparkles, Code2, Film } from 'lucide-react';
 import { translations, Language } from '../data/translations';
 
 interface AboutSectionProps {
@@ -84,92 +84,103 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
 
       {/* Main Bento: Left Mosaic (Sliding from Left) + Right Bio (Sliding from Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        {/* Left: 2-Column Mosaic - Slides from Left */}
+        {/* Left Side: Custom Visual Bento Grid */}
         <motion.div 
           initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 grid grid-cols-2 gap-4"
+          className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
         >
-          {/* Mosaic Col 1 */}
+          {/* Left Column: Hardware Pill + Tall Vertical Card (Shadow Artwork) */}
           <div className="flex flex-col gap-4">
-            {t.about.mosaic.slice(0, 2).map((item, idx) => (
-              <div key={idx} className="mosaic-glow-card spotlight-card group rounded-3xl p-5 sm:p-6 flex flex-col gap-3 justify-between cursor-default">
-                <div className="w-9 h-9 rounded-xl bg-[var(--accent-subtle)] text-[var(--accent)] flex items-center justify-center group-hover:bg-[var(--accent)] group-hover:text-white group-hover:shadow-[0_0_15px_rgba(184,29,52,0.45)] group-hover:scale-105 transition-all duration-300">
-                  {renderIcon(item.iconType)}
-                </div>
-                <div>
-                  <motion.span 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4 }}
-                    className="font-mono text-[10px] uppercase tracking-wider text-[var(--accent)] font-semibold"
-                  >
-                    {item.tag}
-                  </motion.span>
-                  <motion.h4 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.05 }}
-                    className="font-header font-bold text-sm sm:text-base text-[var(--text-primary)] leading-snug mt-0.5 group-hover:text-[var(--accent)] transition-colors"
-                  >
-                    {item.title}
-                  </motion.h4>
-                  <motion.p 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed"
-                  >
-                    {item.desc}
-                  </motion.p>
-                </div>
+            {/* Top Crimson Pill - Hardware Prototyping Interest */}
+            <div 
+              id="about-pill-left-top"
+              className="min-h-[72px] sm:min-h-[76px] rounded-[22px] bg-[var(--accent)] text-white shadow-md flex items-center gap-3.5 px-4 sm:px-5 py-3 transition-all duration-300 hover:brightness-110 group select-none"
+            >
+              <div className="w-9 h-9 rounded-xl bg-black/15 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                <Cpu className="w-5 h-5 text-white" />
               </div>
-            ))}
+              <div className="flex flex-col min-w-0">
+                <span className="font-header font-bold text-xs sm:text-sm tracking-wide text-white leading-snug">
+                  {t.about.hardwareInterest}
+                </span>
+                <span className="text-[11px] text-white/80 font-mono leading-tight mt-0.5">
+                  {t.about.hardwareInterestDesc}
+                </span>
+              </div>
+            </div>
+
+            {/* Tall Vertical Artwork Card (No text labels) */}
+            <div 
+              id="about-card-shadow"
+              className="relative min-h-[380px] sm:min-h-[420px] flex-1 rounded-[28px] overflow-hidden border border-[#b81d34]/40 bg-[#0f1412] shadow-lg group flex flex-col justify-end"
+            >
+              {/* Image slot with uploaded artwork */}
+              <img 
+                src="/shadow-card.png"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=800&auto=format&fit=crop";
+                }}
+                alt="Shadow Character Artwork"
+                id="about-shadow-photo"
+                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
           </div>
 
-          {/* Mosaic Col 2 */}
+          {/* Right Column: Photo Card + Video Editing Pill + Edu Years Stat Card */}
           <div className="flex flex-col gap-4">
-            {t.about.mosaic.slice(2, 4).map((item, idx) => (
-              <div key={idx} className="mosaic-glow-card spotlight-card group rounded-3xl p-5 sm:p-6 flex flex-col gap-3 justify-between cursor-default">
-                <div className="w-9 h-9 rounded-xl bg-[var(--accent-subtle)] text-[var(--accent)] flex items-center justify-center group-hover:bg-[var(--accent)] group-hover:text-white group-hover:shadow-[0_0_15px_rgba(184,29,52,0.45)] group-hover:scale-105 transition-all duration-300">
-                  {renderIcon(item.iconType)}
-                </div>
-                <div>
-                  <motion.span 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4 }}
-                    className="font-mono text-[10px] uppercase tracking-wider text-[var(--text-secondary)] font-semibold"
-                  >
-                    {item.tag}
-                  </motion.span>
-                  <motion.h4 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.05 }}
-                    className="font-header font-bold text-sm sm:text-base text-[var(--text-primary)] leading-snug mt-0.5 group-hover:text-[var(--accent)] transition-colors"
-                  >
-                    {item.title}
-                  </motion.h4>
-                  <motion.p 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed"
-                  >
-                    {item.desc}
-                  </motion.p>
-                </div>
+            {/* Top Photo Card (Sunset / Campus Photo - No text labels) */}
+            <div 
+              id="about-card-campus"
+              className="relative h-48 sm:h-52 rounded-[28px] overflow-hidden border border-[var(--border)] bg-[#121517] shadow-md group"
+            >
+              <img 
+                src="/sun-card.jpg"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=800&auto=format&fit=crop";
+                }}
+                alt="Campus Sunset Sky"
+                id="about-campus-photo"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+
+            {/* Middle Crimson Pill - Video Editing Interest */}
+            <div 
+              id="about-pill-right-mid"
+              className="min-h-[72px] sm:min-h-[76px] rounded-[22px] bg-[var(--accent)] text-white shadow-md flex items-center gap-3.5 px-4 sm:px-5 py-3 transition-all duration-300 hover:brightness-110 group select-none"
+            >
+              <div className="w-9 h-9 rounded-xl bg-black/15 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                <Film className="w-5 h-5 text-white" />
               </div>
-            ))}
+              <div className="flex flex-col min-w-0">
+                <span className="font-header font-bold text-xs sm:text-sm tracking-wide text-white leading-snug">
+                  {t.about.videoInterest}
+                </span>
+                <span className="text-[11px] text-white/80 font-mono leading-tight mt-0.5">
+                  {t.about.videoInterestDesc}
+                </span>
+              </div>
+            </div>
+
+            {/* Bottom Dark Stat Card (+2 Edu. Years) */}
+            <div 
+              id="about-card-edu-years"
+              className="flex-1 min-h-[140px] rounded-[28px] p-6 flex flex-col items-center justify-center text-center gap-1.5 border border-[var(--border)] bg-[#17191b] shadow-md hover:border-[var(--accent)] transition-all duration-300 group cursor-default"
+            >
+              <span className="font-header font-bold text-4xl sm:text-5xl text-[var(--accent)] tracking-tight group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(184,29,52,0.35)]">
+                +2
+              </span>
+              <span className="font-mono text-xs sm:text-sm text-[var(--accent)] font-semibold tracking-wide">
+                {currentLang === 'ar' ? 'سنوات الدراسة' : 'Edu. Years'}
+              </span>
+              <span className="text-[11px] text-[var(--text-secondary)] font-mono">
+                {currentLang === 'ar' ? 'حاسبات وذكاء اصطناعي • جامعة كابيتال' : 'Computer Science • Capital University'}
+              </span>
+            </div>
           </div>
         </motion.div>
 

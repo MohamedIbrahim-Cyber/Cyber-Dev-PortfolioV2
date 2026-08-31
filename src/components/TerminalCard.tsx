@@ -28,7 +28,7 @@ export const TerminalCard: React.FC<TerminalCardProps> = ({ currentLang = 'en' }
 
       {/* Terminal Display Body (No bottom status bar) */}
       <div className="flex flex-col gap-3.5 leading-relaxed text-left">
-        {/* Line 1 */}
+        {/* Line 1 - WhoAmI */}
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-2">
             <span className="text-[var(--accent)] font-bold">$</span>
@@ -39,18 +39,7 @@ export const TerminalCard: React.FC<TerminalCardProps> = ({ currentLang = 'en' }
           </div>
         </div>
 
-        {/* Line 2 */}
-        <div className="flex flex-col gap-0.5">
-          <div className="flex items-center gap-2">
-            <span className="text-[var(--accent)] font-bold">$</span>
-            <span className="text-[var(--text-secondary)]">{t.upTime}</span>
-          </div>
-          <div className="pl-4 text-[var(--text-primary)] font-semibold">
-            {t.upTimeVal}
-          </div>
-        </div>
-
-        {/* Line 3 - JSON Block */}
+        {/* Line 2 - JSON Block */}
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-2">
             <span className="text-[var(--accent)] font-bold">$</span>

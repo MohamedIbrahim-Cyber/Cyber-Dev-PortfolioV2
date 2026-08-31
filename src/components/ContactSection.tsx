@@ -1,28 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Mail, Copy, Check, Send, Github, Linkedin } from 'lucide-react';
+import { Mail, Copy, Check, Send, Github, Linkedin, MessageCircle } from 'lucide-react';
 import { translations, Language } from '../data/translations';
 
 interface ContactSectionProps {
   currentLang: Language;
+  initialMessage?: string;
 }
 
-export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) => {
+export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, initialMessage = '' }) => {
   const t = translations[currentLang];
   const c = t.contact;
   const isRtl = currentLang === 'ar';
 
   const [copied, setCopied] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', whatsapp: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const contactEmail = 'cyberdevbusines@gmail.com';
+  const whatsappNumber = '+201110295074';
+
+  useEffect(() => {
+    if (initialMessage) {
+      setFormData(prev => ({ ...prev, message: initialMessage }));
+      const messageInput = document.getElementById('contact-message');
+      if (messageInput) {
+        messageInput.focus();
+      }
+    }
+  }, [initialMessage]);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(contactEmail);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
+  };
+
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText(whatsappNumber);
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2500);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -154,12 +173,62 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) =
               </div>
             </div>
 
-            {/* Social Profiles */}
+            {/* Direct WhatsApp Info & Copy */}
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-mono text-[var(--text-secondary)] font-semibold">
+                {c.whatsappLabel}
+              </span>
+              <div className="flex items-center justify-between gap-2 p-2.5 rounded-2xl bg-[var(--bg)] border border-[var(--border)]">
+                <a
+                  href="https://wa.me/201110295074"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  dir="ltr"
+                  className="font-mono text-xs text-[var(--text-primary)] hover:text-[#25D366] transition-colors truncate px-2 flex items-center gap-2"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
+                  <span>{whatsappNumber}</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={handleCopyPhone}
+                  aria-label="Copy WhatsApp number"
+                  className="px-3 py-1.5 rounded-xl bg-[var(--surface)] border border-[var(--border)] hover:border-[#25D366] text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-sm"
+                >
+                  {copiedPhone ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-500" />
+                      <span className="text-emerald-500">{c.copied}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5 text-[#25D366]" />
+                      <span>{c.copy}</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Social & Messaging Profiles */}
             <div className="flex flex-col gap-2">
               <span className="text-xs font-mono text-[var(--text-secondary)] font-semibold">
                 {c.socialProfiles}
               </span>
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2.5">
+                {/* WhatsApp Link Option */}
+                <a
+                  href="https://wa.me/201110295074"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp (+201110295074)"
+                  className="px-3.5 py-2 rounded-xl bg-[var(--bg)] border border-[var(--border)] hover:border-[#25D366] hover:text-[#25D366] text-xs font-semibold flex items-center gap-2 transition-colors group shadow-sm"
+                >
+                  <MessageCircle className="w-4 h-4 text-[#25D366] group-hover:scale-110 transition-transform" />
+                  <span>WhatsApp</span>
+                </a>
+
+                {/* GitHub */}
                 <a
                   href="https://github.com/MohamedIbrahim-Cyber"
                   target="_blank"
@@ -169,6 +238,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) =
                   <Github className="w-4 h-4" />
                   <span>GitHub</span>
                 </a>
+
+                {/* LinkedIn */}
                 <a
                   href="https://linkedin.com"
                   target="_blank"

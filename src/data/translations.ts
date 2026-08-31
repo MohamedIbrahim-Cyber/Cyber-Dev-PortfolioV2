@@ -26,8 +26,6 @@ export interface TranslationSchema {
     fileName: string;
     whoAmI: string;
     whoAmIVal: string;
-    upTime: string;
-    upTimeVal: string;
     focusCmd: string;
     coreKey: string;
     coreVals: string[];
@@ -42,6 +40,10 @@ export interface TranslationSchema {
     bioP2: string;
     location: string;
     focus: string;
+    hardwareInterest: string;
+    hardwareInterestDesc: string;
+    videoInterest: string;
+    videoInterestDesc: string;
     stats: Array<{
       value: string;
       label: string;
@@ -89,12 +91,14 @@ export interface TranslationSchema {
     title: string;
     deliverablesLabel: string;
     discussProject: string;
+    clickToInquire: string;
     items: Array<{
       id: string;
       iconName: string;
       title: string;
       description: string;
       deliverables: string[];
+      inquiryMessage: string;
     }>;
   };
   contact: {
@@ -147,15 +151,13 @@ export const translations: Record<Language, TranslationSchema> = {
       titleSuffix: ' & exploring low-level hardware.',
       subtitleP1: 'Hi, I’m ',
       subtitleName: 'Mohamed Ibrahim',
-      subtitleP2: ' (CyberDev) — a Computer Science & AI student at Helwan University crafting resilient web architectures, accessible UI systems, and high-performance C/C++ utilities.',
+      subtitleP2: ' (CyberDev) — a Computer Science & AI student at Capital University, Helwan, Cairo crafting resilient web architectures, accessible UI systems, and high-performance C/C++ utilities.',
       exploreBtn: 'Explore Featured Work',
     },
     terminal: {
       fileName: 'Status.sh',
       whoAmI: 'whoAmI',
       whoAmIVal: 'CyberDev . CS Student & Web Developer',
-      upTime: 'upTime',
-      upTimeVal: 'CyberDev . CS Student & Web Developer',
       focusCmd: 'cat current_focus.json',
       coreKey: 'core',
       coreVals: ['Web Architecture', 'UI Systems'],
@@ -166,10 +168,14 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: 'Who Am I?',
       title: 'About ',
       titleAccent: 'Me',
-      bioP1: 'I’m Mohamed Ibrahim, a student at the Faculty of Computers and Artificial Intelligence, Helwan University and a Front-End Developer.',
+      bioP1: 'I’m Mohamed Ibrahim, a student at the Faculty of Computers and Artificial Intelligence, Capital University, Helwan, Cairo and a Front-End Developer.',
       bioP2: 'Besides programming, I explore low-level hardware prototyping, build web interfaces, and simplify complex technical concepts, believing that knowledge grows when shared.',
       location: 'Cairo, Egypt',
       focus: 'Front-End & Systems',
+      hardwareInterest: 'Hardware Prototyping',
+      hardwareInterestDesc: 'Microcontrollers & Embedded Circuits',
+      videoInterest: 'Video Editing',
+      videoInterestDesc: 'Visual Storytelling & Motion Cuts',
       stats: [
         {
           value: '∞',
@@ -178,7 +184,7 @@ export const translations: Record<Language, TranslationSchema> = {
           isAccent: true,
         },
         {
-          value: '12+',
+          value: '5+',
           label: 'Projects Shipped',
           subtitle: 'Web apps & low-level tools',
           isAccent: false,
@@ -193,7 +199,7 @@ export const translations: Record<Language, TranslationSchema> = {
       mosaic: [
         {
           tag: 'Education',
-          title: 'Helwan University',
+          title: 'Capital University, Helwan, Cairo',
           desc: 'Faculty of Computers & Artificial Intelligence (FCAI)',
           iconType: 'edu',
         },
@@ -294,6 +300,7 @@ export const translations: Record<Language, TranslationSchema> = {
       title: 'Services',
       deliverablesLabel: 'Deliverables',
       discussProject: 'Discuss a project',
+      clickToInquire: 'Inquire for this service',
       items: [
         {
           id: 'frontend-arch',
@@ -301,20 +308,23 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'Modern Web & UI Engineering',
           description: 'Building responsive, blazing-fast web interfaces with rock-solid semantic structure, fluid layouts, and zero-layout-shift responsive systems.',
           deliverables: ['Single-Page Applications', 'Accessible Design Systems', 'Interactive Dashboards', 'Performance Audits'],
+          inquiryMessage: "Hello Mohamed, I'd like to discuss a Modern Web & UI Engineering project with you.",
         },
         {
-          id: 'systems-embedded',
-          iconName: 'Cpu',
-          title: 'Systems & Embedded Prototyping',
-          description: 'Developing efficient C/C++ routines, firmware controllers for microcontrollers, and performant algorithmic backbones with minimal overhead.',
-          deliverables: ['Microcontroller Firmware', 'Memory-Efficient Utilities', 'Sensor Interfacing (I2C/SPI)', 'Data Serialization'],
+          id: 'fullstack-website',
+          iconName: 'Globe',
+          title: 'Full Stack Website Service',
+          description: 'End-to-end web applications crafted from modern reactive front-ends to scalable backend services, API integrations, and robust database architecture.',
+          deliverables: ['Custom Web Applications', 'API & Backend Integration', 'Database & Auth Systems', 'Performance & SEO Optimization'],
+          inquiryMessage: "Hello Mohamed, I'm interested in building a Full Stack Website project with you.",
         },
         {
-          id: 'technical-architecture',
-          iconName: 'Terminal',
-          title: 'Technical Architecture & Tooling',
-          description: 'Crafting structured developer workflows, RESTful API integrations, and robust client-server architectures with clean Git practices.',
-          deliverables: ['API Integration', 'Modular Code Refactoring', 'Linux/Bash Automation', 'Deployment Pipelines'],
+          id: 'automation-service',
+          iconName: 'Zap',
+          title: 'Automation Service',
+          description: 'Automating repetitive workflows, web data extraction, system scripts, and developer pipelines using robust Python, Bash, and Node.js toolchains.',
+          deliverables: ['Python & Bash Automations', 'Data Scraping & Extraction', 'Custom Workflow Bots & Scripts', 'Deployment & CI/CD Pipelines'],
+          inquiryMessage: "Hello Mohamed, I have an Automation Service inquiry regarding scripting & workflow automation.",
         },
       ],
     },
@@ -343,7 +353,7 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     footer: {
       role: 'CyberDev // Mohamed Ibrahim',
-      university: 'Faculty of Computers & AI, Helwan University',
+      university: 'Faculty of Computers & AI, Capital University, Helwan, Cairo',
       rights: 'CyberDev. MIT License.',
     },
   },
@@ -366,15 +376,13 @@ export const translations: Record<Language, TranslationSchema> = {
       titleSuffix: ' واستكشاف العتاد والأنظمة المدمجة.',
       subtitleP1: 'أهلاً بك، أنا ',
       subtitleName: 'محمد إبراهيم',
-      subtitleP2: ' (CyberDev) — طالب بكلية الحاسبات والذكاء الاصطناعي بجامعة حلوان، متخصص في بناء معماريات الويب الحديثة، أنظمة الواجهات المتقنة، وتطوير برمجيات C/C++ عالية الأداء.',
+      subtitleP2: ' (CyberDev) — طالب بكلية الحاسبات والذكاء الاصطناعي بجامعة كابيتال (حلوان، القاهرة)، متخصص في بناء معماريات الويب الحديثة، أنظمة الواجهات المتقنة، وتطوير برمجيات C/C++ عالية الأداء.',
       exploreBtn: 'استكشف أبرز الأعمال',
     },
     terminal: {
       fileName: 'Status.sh',
       whoAmI: 'whoAmI',
       whoAmIVal: 'CyberDev . مطور واجهات وطالب حاسبات',
-      upTime: 'upTime',
-      upTimeVal: 'CyberDev . مطور واجهات وطالب حاسبات',
       focusCmd: 'cat current_focus.json',
       coreKey: 'التركيز الأساسي',
       coreVals: ['معمارية الويب', 'أنظمة الواجهات'],
@@ -385,10 +393,14 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: 'من أنا؟',
       title: 'عن ',
       titleAccent: 'محمد إبراهيم',
-      bioP1: 'أنا محمد إبراهيم، طالب في كلية الحاسبات والذكاء الاصطناعي بجامعة حلوان ومطور واجهات أمامية (Front-End Developer).',
+      bioP1: 'أنا محمد إبراهيم، طالب في كلية الحاسبات والذكاء الاصطناعي بجامعة كابيتال (حلوان، القاهرة) ومطور واجهات أمامية (Front-End Developer).',
       bioP2: 'بجانب البرمجة، أستكشف النمذجة المادية للعتاد والأنظمة منخفضة المستوى، وأبني واجهات ويب متقدمة مع تبسيط المفاهيم المعقدة، مؤمناً بأن المعرفة تنمو وتزدهر بمشاركتها.',
       location: 'القاهرة، مصر',
       focus: 'واجهات أمامية وأنظمة مدمجة',
+      hardwareInterest: 'نمذجة العتاد والإلكترونيات',
+      hardwareInterestDesc: 'متحكمات دقيقة ودوائر مدمجة',
+      videoInterest: 'المونتاج وتحرير الفيديو',
+      videoInterestDesc: 'سرد بصري ومونتاج إبداعي',
       stats: [
         {
           value: '∞',
@@ -397,8 +409,8 @@ export const translations: Record<Language, TranslationSchema> = {
           isAccent: true,
         },
         {
-          value: '12+',
-          label: 'مشروعاً منجزاً',
+          value: '5+',
+          label: 'مشاريع منجزة',
           subtitle: 'تطبيقات ويب وأدوات تقنية',
           isAccent: false,
         },
@@ -412,7 +424,7 @@ export const translations: Record<Language, TranslationSchema> = {
       mosaic: [
         {
           tag: 'التعليم الأكاديمي',
-          title: 'جامعة حلوان',
+          title: 'جامعة كابيتال (حلوان، القاهرة)',
           desc: 'كلية الحاسبات والذكاء الاصطناعي (FCAI)',
           iconType: 'edu',
         },
@@ -513,6 +525,7 @@ export const translations: Record<Language, TranslationSchema> = {
       title: 'الخدمات البرمجية',
       deliverablesLabel: 'المخرجات',
       discussProject: 'ناقش مشروعك',
+      clickToInquire: 'اطلب هذه الخدمة',
       items: [
         {
           id: 'frontend-arch',
@@ -520,20 +533,23 @@ export const translations: Record<Language, TranslationSchema> = {
           title: 'هندسة واجهات الويب الحديثة',
           description: 'بناء واجهات ويب متجاوبة وسريعة للغاية مع بنية دلالية قوية وتصميمات تفاعلية خالية من الإزاحة.',
           deliverables: ['تطبيقات أحادية الصفحة (SPA)', 'أنظمة تصميم سهلة الوصول', 'لوحات تحكم تفاعلية', 'تدقيق وتحسين الأداء'],
+          inquiryMessage: "مرحباً محمد، أود مناقشة مشروع تطوير واجهات وتصميم ويب حديث معك.",
         },
         {
-          id: 'systems-embedded',
-          iconName: 'Cpu',
-          title: 'نمذجة الأنظمة والبرمجيات المدمجة',
-          description: 'تطوير برمجيات منخفضة المستوى بلغة C/C++، وبرمجة متحكمات دقيقة بحجم ذاكرة مثالي وأداء فائق.',
-          deliverables: ['برمجيات المتحكمات الدقيقة', 'أدوات عالية الكفاءة في الذاكرة', 'ربط الحساسات (I2C/SPI)', 'معالجة وتسلسل البيانات'],
+          id: 'fullstack-website',
+          iconName: 'Globe',
+          title: 'خدمة بناء مواقع الويب المتكاملة (Full Stack)',
+          description: 'بناء تطبيقات ومواقع ويب متكاملة من الواجهات الحديثة وحتى الخوادم وقواعد البيانات وتكامل الـ APIs.',
+          deliverables: ['تطبيقات ويب مخصصة', 'بناء وتكامل الـ APIs', 'قواعد البيانات والمصادقة', 'تحسين الأداء ومحركات البحث'],
+          inquiryMessage: "مرحباً محمد، أود التعاون معك لبناء موقع ويب متكامل (Full Stack Website).",
         },
         {
-          id: 'technical-architecture',
-          iconName: 'Terminal',
-          title: 'المعمارية التقنية وأدوات التطوير',
-          description: 'تصميم مسارات عمل برمجية منظمة، ربط واجهات برمجة التطبيقات RESTful، وبناء معماريات نظيفة وموثوقة.',
-          deliverables: ['ربط الـ APIs الخارجية', 'إعادة هيكلة الأكواد البرمجية', 'أتمتة أوامر لينكس وBash', 'إعداد خطوط النشر الآلية'],
+          id: 'automation-service',
+          iconName: 'Zap',
+          title: 'خدمة الأتمتة والسكربتات البرمجية',
+          description: 'أتمتة العمليات المتكررة، استخراج وتجميع البيانات، وسكربتات المهام المؤتمتة باستخدام Python وBash وNode.js.',
+          deliverables: ['سكربتات أتمتة Python وBash', 'استخراج وجمع البيانات (Scraping)', 'بوتات وسير عمل مؤتمت', 'أتمتة النشر وخطوط العمل'],
+          inquiryMessage: "مرحباً محمد، أود طلب خدمة أتمتة المهام والسكربتات البرمجية (Automation Service).",
         },
       ],
     },
@@ -562,7 +578,7 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     footer: {
       role: 'CyberDev // محمد إبراهيم',
-      university: 'كلية الحاسبات والذكاء الاصطناعي، جامعة حلوان',
+      university: 'كلية الحاسبات والذكاء الاصطناعي، جامعة كابيتال، حلوان، القاهرة',
       rights: 'CyberDev. مرخص تحت رخصة MIT.',
     },
   },

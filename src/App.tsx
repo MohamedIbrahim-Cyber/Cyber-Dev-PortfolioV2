@@ -28,6 +28,8 @@ export default function App() {
     return 'en';
   });
 
+  const [serviceInquiryMessage, setServiceInquiryMessage] = useState<string>('');
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     if (theme === 'dark') {
@@ -71,8 +73,14 @@ export default function App() {
         <AboutSection currentLang={currentLang} />
         <ProjectsBento currentLang={currentLang} />
         <SkillsSection currentLang={currentLang} />
-        <ServicesSection currentLang={currentLang} />
-        <ContactSection currentLang={currentLang} />
+        <ServicesSection 
+          currentLang={currentLang} 
+          onSelectService={(msg) => setServiceInquiryMessage(msg)}
+        />
+        <ContactSection 
+          currentLang={currentLang} 
+          initialMessage={serviceInquiryMessage}
+        />
       </main>
 
       {/* Footer */}
