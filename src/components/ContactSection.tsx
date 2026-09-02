@@ -19,7 +19,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, ini
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const contactEmail = 'cyberdevbusines@gmail.com';
+  const contactEmail = 'contact@cyberdev.com';
   const whatsappNumber = '+201110295074';
 
   useEffect(() => {
