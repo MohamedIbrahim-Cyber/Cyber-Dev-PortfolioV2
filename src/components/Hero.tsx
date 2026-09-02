@@ -92,7 +92,7 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
               </a>
 
               <a
-                href="mailto:cyberdevbusines@gmail.com"
+                href="mailto:contact@cyberdev.com"
                 aria-label="Send email to Mohamed Ibrahim"
                 className="w-11 h-11 rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-primary)] flex items-center justify-center hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all shadow-sm"
               >
