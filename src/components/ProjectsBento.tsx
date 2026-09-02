@@ -88,7 +88,7 @@ export const ProjectsBento: React.FC<ProjectsBentoProps> = ({ currentLang }) => 
             </div>
 
             <a
-              href="https://course-organizer-nine.vercel.app"
+              href="https://courses.cyberdev.me"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open Course Organizer Live Demo"
@@ -121,7 +121,7 @@ export const ProjectsBento: React.FC<ProjectsBentoProps> = ({ currentLang }) => 
 
             <div className="flex flex-wrap items-center gap-3 pt-3">
               <a
-                href="https://course-organizer-nine.vercel.app"
+                href="https://courses.cyberdev.me"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--accent)] text-white font-semibold text-xs hover:bg-[var(--accent-hover)] transition-all shadow-md hover:scale-105"
