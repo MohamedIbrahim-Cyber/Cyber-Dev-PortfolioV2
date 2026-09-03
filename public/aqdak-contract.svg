@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 1020" width="100%" height="100%">
+  <defs>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.12" />
+    </filter>
+    <filter id="subtleGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Outer Background -->
+  <rect width="950" height="1020" fill="#121316" />
+
+  <!-- The Document Sheet -->
+  <g transform="translate(35, 25)">
+    <!-- Paper Sheet -->
+    <rect width="880" height="970" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#cardShadow)" />
+
+    <!-- Top Header Area -->
+    <g transform="translate(45, 45)">
+      <!-- AQ Logo Badge -->
+      <rect x="0" y="0" width="52" height="52" rx="14" fill="#111827" />
+      <text x="26" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="21" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="-0.5">AQ</text>
+
+      <!-- Document Main Title & Subtitles -->
+      <g transform="translate(68, 6)">
+        <text x="0" y="16" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#111827" letter-spacing="-0.3">Freelancer / Independent Contractor</text>
+        <text x="0" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#6b7280">Freelance Service Agreement • اتفاقية تقديم خدمات مستقلة</text>
+        
+        <text x="0" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#374151">Services Agreement</text>
+        <text x="220" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#4b5563" text-anchor="end">عقد تقديم خدمات مستقلة</text>
+      </g>
+
+      <!-- Right Metadata & Verification Pill -->
+      <g transform="translate(605, 4)">
+        <!-- Pill -->
+        <rect x="0" y="0" width="185" height="28" rx="14" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" />
+        <!-- Shield Icon -->
+        <path d="M16 8 L22 5 L28 8 C28 13 22 19 22 19 C22 19 16 13 16 8 Z" fill="none" stroke="#4b5563" stroke-width="1.5" />
+        <path d="M19 11 L21 13 L25 9" fill="none" stroke="#4b5563" stroke-width="1.5" />
+        <text x="34" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#4b5563" letter-spacing="0.6">STANDARD AQDAK MODEL</text>
+
+        <!-- Document Code and Date -->
+        <text x="180" y="50" font-family="ui-monospace, monospace" font-size="14" font-weight="800" fill="#111827" text-anchor="end">#AQD-2026</text>
+        <text x="180" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#6b7280" text-anchor="end">03 Sept 2026</text>
+      </g>
+    </g>
+
+    <!-- Divider Bar -->
+    <line x1="45" y1="160" x2="835" y2="160" stroke="#1f2937" stroke-width="2" />
+
+    <!-- SECTION 1: CONTRACTING PARTIES -->
+    <g transform="translate(45, 185)">
+      <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#111827" letter-spacing="0.5">1. CONTRACTING PARTIES</text>
+      <text x="790" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#111827" text-anchor="end">١. أطراف التعاقد</text>
+
+      <!-- Parties Cards Grid -->
+      <g transform="translate(0, 15)">
+        <!-- First Party Box -->
+        <rect x="0" y="0" width="385" height="82" rx="10" fill="#fcfdfd" stroke="#e5e7eb" stroke-width="1.2" />
+        <text x="16" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#374151">FIRST PARTY (FREELANCER)</text>
+        <text x="368" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#6b7280" text-anchor="end">الطرف الأول (المستقل)</text>
+        <text x="16" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#111827">[Freelancer Legal Name]</text>
+
+        <!-- Second Party Box -->
+        <rect x="405" y="0" width="385" height="82" rx="10" fill="#fcfdfd" stroke="#e5e7eb" stroke-width="1.2" />
+        <text x="421" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#374151">SECOND PARTY (CLIENT)</text>
+        <text x="774" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#6b7280" text-anchor="end">الطرف الثاني (العميل)</text>
+        <text x="421" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#111827">[Client / Company Representative]</text>
+      </g>
+    </g>
+
+    <!-- SECTION 2: PREAMBLE & PURPOSE -->
+    <g transform="translate(45, 335)">
+      <line x1="0" y1="-20" x2="790" y2="-20" stroke="#f1f5f9" stroke-width="1" />
+      <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#111827" letter-spacing="0.5">2. PREAMBLE &amp; PURPOSE</text>
+      <text x="790" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#111827" text-anchor="end">٢. التمهيد والغرض من الاتفاق</text>
+
+      <g transform="translate(0, 18)">
+        <!-- English Clause -->
+        <foreignObject x="0" y="0" width="375" height="160">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: system-ui, -apple-system, sans-serif; font-size: 12.5px; line-height: 1.6; color: #4b5563;">
+            Whereas the Second Party desires to engage the First Party for specialized professional freelance services, and the First Party possesses the necessary technical qualifications, skills, and equipment, both parties mutually agree to enter into this legally binding agreement subject to the following standard scope and payment conditions.
+          </div>
+        </foreignObject>
+
+        <!-- Vertical Divider -->
+        <line x1="395" y1="5" x2="395" y2="160" stroke="#e5e7eb" stroke-width="1" />
+
+        <!-- Arabic Clause -->
+        <foreignObject x="415" y="0" width="375" height="160">
+          <div xmlns="http://www.w3.org/1999/xhtml" dir="rtl" style="font-family: system-ui, -apple-system, sans-serif; font-size: 12.5px; line-height: 1.65; color: #4b5563; text-align: right;">
+            حيث أن الطرف الثاني يرغب في تكليف الطرف الأول بتنفيذ وإنجاز خدمات مهنية مستقلة، وحيث أن الطرف الأول يمتلك الخبرة والأدوات اللازمة لإنجاز هذه الأعمال، فقد اتفق الطرفان بكامل الأهلية والإرادة على إبرام هذا العقد الملتزم بالشروط والمخرجات الموضحة أدناه.
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+
+    <!-- SECTION 3: SCOPE & DELIVERABLES MATRIX -->
+    <g transform="translate(45, 545)">
+      <line x1="0" y1="-20" x2="790" y2="-20" stroke="#1f2937" stroke-width="2" />
+      <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#111827" letter-spacing="0.5">3. SCOPE &amp; DELIVERABLES MATRIX</text>
+      <text x="790" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#111827" text-anchor="end">٣. المخرجات وجدول التسليم الزمني</text>
+
+      <!-- Table Header Bar -->
+      <g transform="translate(0, 15)">
+        <rect x="0" y="0" width="790" height="38" rx="8" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" />
+        <text x="24" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#374151">#</text>
+        <text x="60" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#374151">DELIVERABLE ITEM</text>
+        <text x="340" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#4b5563">بند المخرج</text>
+        <text x="480" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#374151">FORMAT / الصيغة</text>
+        <text x="680" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#374151">TIMELINE / المدة</text>
+      </g>
+
+      <!-- Out of Scope Warning Callout Box -->
+      <g transform="translate(0, 70)">
+        <rect x="0" y="0" width="790" height="165" rx="10" fill="#fcfdfd" stroke="#cbd5e1" stroke-width="1.2" />
+        
+        <!-- Warning Header -->
+        <g transform="translate(18, 16)">
+          <!-- Alert Triangle Icon -->
+          <path d="M12 2 L22 20 L2 20 Z" fill="none" stroke="#4b5563" stroke-width="2" stroke-linejoin="round" />
+          <line x1="12" y1="8" x2="12" y2="13" stroke="#4b5563" stroke-width="2" stroke-linecap="round" />
+          <circle cx="12" cy="16.5" r="1" fill="#4b5563" />
+          
+          <text x="32" y="16" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#1f2937">Out of Scope Warning / تنبيه خارج نطاق العمل</text>
+        </g>
+
+        <!-- English Warning Text -->
+        <foreignObject x="18" y="46" width="754" height="52">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: system-ui, -apple-system, sans-serif; font-size: 11.5px; line-height: 1.55; color: #4b5563;">
+            <strong>Out of Scope:</strong> Any service, revision, asset, or feature not explicitly listed in the deliverables table above is strictly considered outside the agreed contract scope. Unlisted requests require a separate written Change Order and will incur additional fees and timeline extensions.
+          </div>
+        </foreignObject>
+
+        <!-- Arabic Warning Text -->
+        <foreignObject x="18" y="104" width="754" height="48">
+          <div xmlns="http://www.w3.org/1999/xhtml" dir="rtl" style="font-family: system-ui, -apple-system, sans-serif; font-size: 11.5px; line-height: 1.6; color: #4b5563; text-align: right;">
+            <strong>خارج نطاق العمل:</strong> أي طلب أو تعديل أو عنصر لم يذكر صراحة في جدول المخرجات أعلاه يعتبر خارج نطاق هذا الاتفاق، يتطلب تقديم أي خدمات إضافية إصدار أمر تغيير (Change Order) مكتوب، وسيترتب عليه إضافة تكاليف ومدد إضافية.
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+
+    <!-- Watermark / Brand Security Ribbon Bottom -->
+    <g transform="translate(45, 835)">
+      <rect x="0" y="0" width="790" height="75" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />
+      <text x="24" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#111827">ENFORCEABLE FREELANCE AGREEMENT • POWERED BY AQDAK.CYBERDEV.ME</text>
+      <text x="24" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="500" fill="#64748b">Equipped with InstaPay rails, milestone protection &amp; client counter-signing verification.</text>
+      <text x="766" y="42" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="end">SECURE DRAFT #AQD-EGY-2026</text>
+    </g>
+  </g>
+</svg>

@@ -239,18 +239,10 @@ export const translations: Record<Language, TranslationSchema> = {
           tags: ['HTML5', 'CSS Grid', 'JavaScript (ES6+)', 'Vercel'],
         },
         {
-          id: 'c-memory-allocator',
-          title: 'FastPath C/C++ Custom Memory Allocator',
-          description: 'A high-efficiency heap memory allocator implementation exploring buddy allocation, free-list coalescing, and cache-aligned paging benchmarks.',
-          tags: ['C++', 'Systems Architecture', 'Linux API', 'Memory Management'],
-          terminalOutput: {
-            cmd: './benchmark_alloc --iterations=100000',
-            stdout: [
-              'Allocated 100k blocks in 4.2ms',
-              'Heap fragmentation: < 2.4%',
-              'Throughput: 23.8M ops/sec [PASS]',
-            ],
-          },
+          id: 'aqdak',
+          title: 'Aqdak',
+          description: 'I built Aqdak (عقدك) to protect Egyptian freelancers from scope creep and payment delays through clear, bilingual contracts. It lets creatives set deliverables, revision caps, and local rails like InstaPay into an enforceable, browser-generated PDF with digital signatures.',
+          tags: ['React', 'Bilingual Contracts', 'PDF Engine', 'InstaPay'],
         },
         {
           id: 'iot-telemetry-controller',
@@ -464,18 +456,10 @@ export const translations: Record<Language, TranslationSchema> = {
           tags: ['HTML5', 'CSS Grid', 'JavaScript (ES6+)', 'Vercel'],
         },
         {
-          id: 'c-memory-allocator',
-          title: 'مخصص الذاكرة المتقدم بلغة C/C++',
-          description: 'محاكي وإدارة ذاكرة عالية الكفاءة يستكشف تقنيات تخصيص الذاكرة Buddy Allocation ودمج القوائم الحرة لتحقيق أقصى سرعة وأقل تجزئة.',
-          tags: ['C++', 'معمارية الأنظمة', 'Linux API', 'إدارة الذاكرة'],
-          terminalOutput: {
-            cmd: './benchmark_alloc --iterations=100000',
-            stdout: [
-              'تم تخصيص 100 ألف كتلة في 4.2ms',
-              'نسبة تجزئة الذاكرة: < 2.4%',
-              'معدل المعالجة: 23.8M عملية/ثانية [نجاح]',
-            ],
-          },
+          id: 'aqdak',
+          title: 'Aqdak',
+          description: 'I built Aqdak (عقدك) to protect Egyptian freelancers from scope creep and payment delays through clear, bilingual contracts. It lets creatives set deliverables, revision caps, and local rails like InstaPay into an enforceable, browser-generated PDF with digital signatures.',
+          tags: ['React', 'عقود ثنائية', 'توليد PDF', 'InstaPay'],
         },
         {
           id: 'iot-telemetry-controller',
